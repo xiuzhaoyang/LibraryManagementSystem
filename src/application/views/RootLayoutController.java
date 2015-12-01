@@ -22,7 +22,6 @@ public class RootLayoutController {
     }
 
     public void initAdminLayout(){
-
     }
 
     public void initLibrarianLayout(){
