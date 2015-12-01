@@ -1,11 +1,17 @@
 package application;
 
+
 import java.io.IOException;
 
 import application.views.LoginController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+
+import application.views.RootLayoutController;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
@@ -13,6 +19,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
 
 
 public class Main extends Application {
@@ -22,21 +31,25 @@ public class Main extends Application {
 	RadioButton admin;
 	RadioButton superRole;
 
+	private BorderPane rootLayout;
+
+
 	@Override
 	public void start(Stage primaryStage) {
-		try {
+//		try {
 //			BorderPane root = new BorderPane();
-			this.primaryStage = primaryStage;
 //			Scene scene = new Scene(root,400,400);
 //			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 //			primaryStage.setScene(scene);
 //			primaryStage.show();
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
 
-			showLogin();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		this.primaryStage = primaryStage;
+		showLogin();
 	}
+
 
 	private void showLogin()
 	{
@@ -71,16 +84,6 @@ public class Main extends Application {
 			loginStage.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-
-	private void handleLoginBtn(ActionEvent e) {
-		String role;
-
-		if(libranian.isSelected()){
-			role = "Libranian";
-		}else{
-			role = "Amdin";
 		}
 	}
 
