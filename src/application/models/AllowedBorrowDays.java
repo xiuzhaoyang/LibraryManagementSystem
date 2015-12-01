@@ -1,4 +1,4 @@
-package models;
+package application.models;
 
 public enum AllowedBorrowDays {
 	SEVEN_DAYS,
