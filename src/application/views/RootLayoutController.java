@@ -1,11 +1,11 @@
-package views;
+package application.views;
 
 import application.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import models.Book;
+import application.models.Book;
 
 /**
  * Created by su on 12/1/15.
