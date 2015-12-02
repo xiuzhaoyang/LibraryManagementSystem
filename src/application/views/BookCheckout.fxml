@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.views.BookCheckoutController">
+   <children>
+      <SplitPane dividerPositions="0.21608040201005024" layoutX="53.0" layoutY="-24.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Button layoutX="236.0" layoutY="26.0" mnemonicParsing="false" text="Go" />
+                  <Button layoutX="517.0" layoutY="26.0" mnemonicParsing="false" text="GO" />
+                  <Label layoutX="19.0" layoutY="31.0" text="MemberID" />
+                  <Label layoutX="334.0" layoutY="31.0" text="ISBN" />
+                  <TextField layoutX="95.0" layoutY="26.0" prefHeight="31.0" prefWidth="131.0" />
+                  <TextField layoutX="373.0" layoutY="26.0" prefHeight="31.0" prefWidth="131.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView layoutX="139.0" layoutY="32.0" prefHeight="308.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="entryIdColumn" prefWidth="75.0" text="EntryID" />
+                      <TableColumn fx:id="bookIdColumn" prefWidth="75.0" text="BookID" />
+                        <TableColumn fx:id="isbnColumn" prefWidth="75.0" text="ISBN" />
+                        <TableColumn fx:id="titleColumn" prefWidth="62.0" text="Title" />
+                        <TableColumn fx:id="checkoutDateColumn" prefWidth="106.0" text="CheckoutDate" />
+                        <TableColumn fx:id="dueDateColumn" prefWidth="74.0" text="DueDate" />
+                        <TableColumn prefWidth="101.0" text="ReturnDate" />
+                        <TableColumn fx:id="isFineColumn" prefWidth="114.0" text="IsFine" />
+                        <TableColumn fx:id="finePaidColumn" prefWidth="88.0" text="FinePaid" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

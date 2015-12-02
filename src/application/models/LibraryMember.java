@@ -1,6 +1,7 @@
 package application.models;
 
-public class LibraryMember extends Person{
-
-	
+public class LibraryMember extends PersonRole{
+	public String toString(){
+		return "LibraryMember";
+	}
 }
