@@ -16,13 +16,13 @@ import application.models.LibraryMember;
 public class DaoTest  {
 	
 	public static void testWriteDB(){
-		List<LibraryMember> list = new ArrayList<LibraryMember>();
-		LibraryMember lb = new LibraryMember("aa", "bb", null, "111" );
-		list.add(lb);
-		lb = new LibraryMember("cc", "dd", null, "222");
-		list.add(lb);
-		LibmDao d = new LibmDao();
-		d.saveObjects(list);
+//		List<LibraryMember> list = new ArrayList<LibraryMember>();
+//		LibraryMember lb = new LibraryMember("aa", "bb", null, "111" );
+//		list.add(lb);
+//		lb = new LibraryMember("cc", "dd", null, "222");
+//		list.add(lb);
+//		LibmDao d = new LibmDao();
+//		d.saveObjects(list);
 	}
 	
 	public static void testReadDB(){
