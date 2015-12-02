@@ -1,28 +1,20 @@
 package application.test;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+import application.util.Utils;
+import application.util.Utils.ISceneControllerSetting;
+import application.views.BaseController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.util.Callback;
-import application.Main;
-import application.test.ListViewCell;
-import application.util.Utils;
-import application.util.Utils.ISceneControllerSetting;
-import application.views.BaseController;
 
 public class ListController {
 	

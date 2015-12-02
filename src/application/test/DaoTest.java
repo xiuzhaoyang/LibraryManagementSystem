@@ -1,12 +1,5 @@
 package application.test;
 
-import java.io.EOFException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +15,14 @@ public class DaoTest  {
 //		lb = new LibraryMember("cc", "dd", null, "222");
 //		list.add(lb);
 //		LibmDao d = new LibmDao();
-//		d.saveObjects(list);
+		
+		List<LibraryMember> ps = new ArrayList<>();
+		
+		LibraryMember p = new LibraryMember(0, "cc", "dd", "dddd", null, null, null, null, null, null);
+		ps.add(p);
+		
+		LibmDao d = new LibmDao();
+		d.saveObjects(ps);
 	}
 	
 	public static void testReadDB(){

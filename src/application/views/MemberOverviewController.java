@@ -5,14 +5,19 @@ import java.util.Optional;
 import application.Main;
 import application.models.Person;
 import application.util.DateHelper;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.util.Callback;
 
 public class MemberOverviewController {
 	@FXML
@@ -64,12 +69,58 @@ public class MemberOverviewController {
 
 	@FXML
 	private void initialize(){
-		firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
-		lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+//		firstNameColumn.setCellFactory(new Callback<TableColumn<Person,String>, TableCell<Person,String>>() {
+//			
+//			@Override
+//			public TableCell<Person, String> call(TableColumn<Person, String> param) {
+//				
+//				return new TableCell<Person, String>(){
+//					@Override
+//					protected void updateItem(String item, boolean empty) {
+//						// TODO Auto-generated method stub
+//						super.updateItem(item, empty);
+//						
+//						
+//					}
+//				};
+//			}
+//		});
+		
+//		firstNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+//			
+//			@Override
+//			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
+//				// TODO Auto-generated method stub
+//				return null;
+//			}
+//		});
+		
+		firstNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+			
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
+				return new SimpleStringProperty(param.getValue().getFirstName()) ;
+			}
+		});
+		
+		lastNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
+			
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
+				
+				return new SimpleStringProperty(param.getValue().getLastName()) ;
+			}
+		});
 
 		showMemberDetails(null);
 
-		personTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showMemberDetails(newValue));
+		personTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Person>() {
+			@Override
+			public void changed(ObservableValue<? extends Person> observable, Person oldValue, Person newValue) {
+				showMemberDetails(newValue);
+				
+			}
+		});
 	}
 
 	public void setMain(Main main){
@@ -82,7 +133,7 @@ public class MemberOverviewController {
 		if(member != null){
 			firstNameLabel.setText(member.getFirstName());
 			lastNameLabel.setText(member.getLastName());
-			birthdayLabel.setText(DateHelper.format(member.getBirthday()));
+			birthdayLabel.setText(DateHelper.format(member.getDob()));
 			streetLabel.setText(member.getAddress().getStreet());
 			cityLabel.setText(member.getAddress().getCity());
 			stateLabel.setText(member.getAddress().getState());

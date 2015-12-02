@@ -58,10 +58,10 @@ public class MemberEditDialogController {
 		this.member = member;
 
 //		int id = member.getId();
-		idLabel.setText(member.getId() + "");
+		idLabel.setText(member.getPid() + "");
 		firstNameField.setText(member.getFirstName());
 		lastNameField.setText(member.getLastName());
-		birthdayField.setText(DateHelper.format(member.getBirthday()));
+		birthdayField.setText(DateHelper.format(member.getDob()));
 		birthdayField.setPromptText("dd.mm.yyyy");
 		streetField.setText(member.getAddress().getStreet());
 		cityField.setText(member.getAddress().getCity());
@@ -78,10 +78,10 @@ public class MemberEditDialogController {
 	@FXML
 	private void handleOK(){
 		if(isInputValid()){
-			member.setId(Integer.parseInt(idLabel.getText()));
+			member.setPid(Integer.valueOf(idLabel.getText()));
 			member.setFirstName(firstNameField.getText());
 			member.setLastName(lastNameField.getText());
-			member.setBirthday(DateHelper.parse(birthdayField.getText()));
+			member.setDob(DateHelper.parse(birthdayField.getText()));
 
 			String street = streetField.getText();
 			String city = cityField.getText();
