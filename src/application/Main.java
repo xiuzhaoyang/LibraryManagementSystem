@@ -43,7 +43,31 @@ public class Main extends Application {
 		showLogin();
 	}
 
+	private void showListView() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("test/tbtest.fxml"));
+			AnchorPane loginPage;
 
+			loginPage = (AnchorPane) loader.load();
+
+			Stage loginStage = new Stage();
+
+			Scene scene = new Scene(loginPage);
+			loginStage.setScene(scene);
+
+			// Give the controller access to the main app.
+			// LoginController controller = loader.getController();
+			// controller.setStage(loginStage);
+
+			// wait until user close it
+			loginStage.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	private void showLogin()
 	{
 		try {
