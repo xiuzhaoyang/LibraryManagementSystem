@@ -1,8 +1,6 @@
 package application.views;
 
 import application.Main;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,9 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import application.models.Book;
-
-import java.awt.*;
+import javafx.scene.layout.BorderPane;
 
 /**
  * Created by su on 12/1/15.
@@ -21,6 +17,9 @@ public class RootLayoutController {
 
     @FXML
     private MenuBar menubar;
+
+    @FXML
+    private BorderPane content;
 
     private Boolean isAdmin;
     private Main mainApp;
@@ -34,8 +33,7 @@ public class RootLayoutController {
         this.mainApp = mainApp;
     }
 
-    public void initAdminLayout(){
-
+    public void initAdminLayout() {
         ObservableList<Menu> menus = menubar.getMenus();
         menus.clear();
 
@@ -60,8 +58,8 @@ public class RootLayoutController {
         addExitBook.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            System.out.print("add a exiting book");
-        }
+                System.out.print("add a exiting book");
+            }
         });
         menuBook.getItems().add(addBookItem);
         menuBook.getItems().add(addExitBook);
@@ -70,11 +68,24 @@ public class RootLayoutController {
 
         menus.add(menuMember);
         menus.add(menuBook);
+        showContentView();
 
     }
 
-    public void initLibrarianLayout(){
+    public void initLibrarianLayout() {
 
+    }
+
+    private void showContentView(){
+//        try {
+//
+//            FXMLLoader loader = new FXMLLoader();
+//            loader.setLocation(Main.class.getResource("views/Content.fxml"));
+//            AnchorPane contentView = (AnchorPane) loader.load();
+//            content.setCenter(contentView);
+//        } catch (IOException e){
+//            e.printStackTrace();
+//        }
     }
 
 }
