@@ -1,5 +1,8 @@
 package application.views;
 
+import application.models.Administrator;
+import application.models.Person;
+import application.models.PersonRole;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -7,6 +10,11 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class LoginController {
 
@@ -26,6 +34,8 @@ public class LoginController {
 	private RadioButton supernField;
 
 	private Stage loginStage;
+
+	private Person personInfo;
 
 	@FXML
 	private void handleLoginBtn() {
@@ -59,40 +69,21 @@ public class LoginController {
 		if (username.length() == 0) {
 			alert.setContentText("Please fill out your username.");
 			alert.showAndWait();
+			return ;
 		}else if (password.length() == 0) {
 			alert.setContentText("Please fill out your password.");
 			alert.showAndWait();
+			return ;
 		}else if (role.length() == 0) {
 			alert.setContentText("Please choose a role.");
 			alert.showAndWait();
-		}else if (username.equals("lib") && password.equals("lib")) {
-			if(role.equals("Libranian")){
-				loginStage.close();
-				//call libranian UI
-			}else{
-				alert.setContentText("Please check your role.");
-				alert.showAndWait();
-			}
-
-		}else if(username.equals("admin") && password.equals("admin")){
-			if(role.equals("Admin")){
-				loginStage.close();
-				//call Admin UI
-			}else{
-				alert.setContentText("Please check your role.");
-				alert.showAndWait();
-			}
-		}else if(username.equals("super") && password.equals("super")){
-			if(role.equals("Super")){
-				loginStage.close();
-				//call Super UI
-			}else{
-				alert.setContentText("Please check your role.");
-				alert.showAndWait();
-			}
-		}else {
+			return ;
+		}else if(!checkUser(username,password,role)){
 			alert.setContentText("Either your name or password is wrong.");
 			alert.showAndWait();
+			return ;
+		}else{
+			loginStage.close();
 		}
 	}
 
@@ -103,5 +94,19 @@ public class LoginController {
 
 	public void setStage(Stage loginStage) {
 		this.loginStage = loginStage;
+	}
+
+	public Person getPersonInfo(){
+		return this.personInfo;
+	}
+
+	private boolean checkUser(String account, String pwd, String role){
+		if(account.equals("admin") && pwd.equals("admin")){
+			List<PersonRole> roleList = new ArrayList<>();
+			roleList.add(new Administrator());
+			this.personInfo = new Person(1,"Zhaoyang","Su","4th","FARIFIELD","IA","52557","13146387943", LocalDate.now(),roleList);
+			return true;
+		}
+		return true;
 	}
 }

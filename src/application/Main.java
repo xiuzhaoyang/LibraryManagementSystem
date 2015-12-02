@@ -17,6 +17,7 @@ import application.models.PersonRole;
 import application.views.LoginController;
 import application.views.MemberEditDialogController;
 import application.views.MemberOverviewController;
+import application.views.RootLayoutController;
 import javafx.application.Application;
 
 import javafx.collections.FXCollections;
@@ -117,8 +118,8 @@ public class Main extends Application {
 
 		this.primaryStage = primaryStage;
 		showLogin();
-		initRootLayout();
-		showMemberOverview();
+//		initRootLayout();
+//		showMemberOverview();
 	}
 
 	private void showListView() {
@@ -154,17 +155,17 @@ public class Main extends Application {
 			loader.setLocation(Main.class.getResource("views/Login.fxml"));
 			AnchorPane loginPage = (AnchorPane) loader.load();
 
-			final ToggleGroup group = new ToggleGroup();
-			libranian = new RadioButton("Libranian");
-			admin = new RadioButton("Admin");
-			superRole = new RadioButton("Super");
-
-			libranian.setToggleGroup(group);
-			admin.setToggleGroup(group);
-			superRole.setToggleGroup(group);
-
-			Button loginBtn = new Button();
-			Button cancelBtn = new Button();
+//			final ToggleGroup group = new ToggleGroup();
+//			libranian = new RadioButton("Libranian");
+//			admin = new RadioButton("Admin");
+//			superRole = new RadioButton("Super");
+//
+//			libranian.setToggleGroup(group);
+//			admin.setToggleGroup(group);
+//			superRole.setToggleGroup(group);
+//
+//			Button loginBtn = new Button();
+//			Button cancelBtn = new Button();
 
 			Stage loginStage = new Stage();
 
@@ -177,18 +178,24 @@ public class Main extends Application {
 
 			//wait until user close it
 			loginStage.showAndWait();
+			Person person = controller.getPersonInfo();
+			if(person != null){
+				showRootLayout(person);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 
-	public void initRootLayout(){
+	public void showRootLayout(Person member){
 		try{
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("views/RootLayout.fxml"));
 			rootLayout = (BorderPane)loader.load();
-
+			RootLayoutController controller = loader.getController();
+			controller.setMainApp(this);
+			controller.setMember(member);
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
 			primaryStage.show();

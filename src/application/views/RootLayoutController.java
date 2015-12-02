@@ -1,19 +1,29 @@
 package application.views;
 
 import application.Main;
+import application.models.Administrator;
+import application.models.Librarian;
+import application.models.Person;
+import application.models.PersonRole;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
+import java.io.IOException;
 
 /**
  * Created by su on 12/1/15.
  */
 public class RootLayoutController {
+
+    private String MEMBER_OVERVIEW = "MemberOverview.fxml";
 
     @FXML
     private MenuBar menubar;
@@ -21,12 +31,23 @@ public class RootLayoutController {
     @FXML
     private BorderPane content;
 
-    private Boolean isAdmin;
     private Main mainApp;
+    private Person member;
+
 
     @FXML
     private void initialize() {
         initAdminLayout();
+    }
+
+    public void setMember(Person member) {
+        this.member = member;
+        PersonRole role = member.getPersonRoles().get(0);
+        if(role instanceof Administrator){
+            initAdminLayout();
+        } else if(role instanceof Librarian){
+            initLibrarianLayout();
+        }
     }
 
     public void setMainApp(Main mainApp) {
@@ -68,24 +89,24 @@ public class RootLayoutController {
 
         menus.add(menuMember);
         menus.add(menuBook);
-        showContentView();
-
+        showContentView(MEMBER_OVERVIEW);
     }
 
     public void initLibrarianLayout() {
 
     }
 
-    private void showContentView(){
-//        try {
-//
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(Main.class.getResource("views/Content.fxml"));
-//            AnchorPane contentView = (AnchorPane) loader.load();
-//            content.setCenter(contentView);
-//        } catch (IOException e){
-//            e.printStackTrace();
-//        }
+
+    private void showContentView(String fileName){
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("views/"+fileName));
+            AnchorPane contentView = (AnchorPane) loader.load();
+            content.setCenter(contentView);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 }
