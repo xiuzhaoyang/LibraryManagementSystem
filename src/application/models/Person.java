@@ -168,4 +168,5 @@ public class Person {
     public ObjectProperty<List<PersonRole>> personRoleProperty(){
     	return personRoles;
     }
+
 }

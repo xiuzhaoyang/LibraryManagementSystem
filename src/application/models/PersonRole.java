@@ -1,5 +1,5 @@
 package application.models;
 
-public abstract class PersonRole {
-	public abstract String toString();
+public interface PersonRole {
+	public String toString();
 }

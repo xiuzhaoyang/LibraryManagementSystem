@@ -1,11 +1,12 @@
 package application.models;
 
-public class Address {
+
+import java.io.Serializable;
+
+public class Address implements Serializable{
 	String street;
 	String zip;
 	String state;
-	String city;
-
 	public String getStreet() {
 		return street;
 	}
@@ -30,6 +31,7 @@ public class Address {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	String city;
 
 	public Address(String street, String city, String state, String zip){
 		this.street = street;
@@ -37,4 +39,6 @@ public class Address {
 		this.state = state;
 		this.zip = zip;
 	}
+
+	private static final long serialVersionUID = 101L;
 }
