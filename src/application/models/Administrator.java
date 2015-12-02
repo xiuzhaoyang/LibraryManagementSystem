@@ -2,6 +2,6 @@ package application.models;
 
 public class Administrator implements PersonRole{
 	public String toString(){
-		return "Administrator";
+		return Person.PERSON_TYPE_ADMIN;
 	}
 }

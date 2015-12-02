@@ -3,10 +3,9 @@ package application.models;
 import java.io.Serializable;
 
 public class LibraryMember implements Serializable , PersonRole{
-	public static final String FILENAME = "LibraryMember";
 
 	public String toString(){
-		return "LibraryMember";
+		return Person.PERSON_TYPE_MEMBER;
 	}
 
 
