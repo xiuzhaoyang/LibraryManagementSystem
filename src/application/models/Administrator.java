@@ -1,5 +1,7 @@
 package application.models;
 
-public class Administrator extends Person{
-
+public class Administrator implements PersonRole{
+	public String toString(){
+		return "Administrator";
+	}
 }

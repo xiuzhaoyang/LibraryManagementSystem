@@ -1,9 +1,9 @@
 package application.models;
 
+
 import java.io.Serializable;
 
 public class Address implements Serializable{
-
 	String street;
 	String zip;
 	String state;
@@ -32,6 +32,13 @@ public class Address implements Serializable{
 		this.city = city;
 	}
 	String city;
+
+	public Address(String street, String city, String state, String zip){
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+	}
 
 	private static final long serialVersionUID = 101L;
 }
