@@ -154,7 +154,7 @@ public class MemberEditDialogController {
 			String[] roles = personRolesField.getText().split(",");
 
 			for(String role : roles){
-				if(!role.equals("Librarian") && !role.equals("LibraryMember") && !role.equals("Administrator")){
+				if(!role.equals(Person.PERSON_TYPE_LIBRARIAN) && !role.equals(Person.PERSON_TYPE_MEMBER) && !role.equals(Person.PERSON_TYPE_ADMIN)){
 					sb.append("Please input correct role.\n");
 				}
 			}

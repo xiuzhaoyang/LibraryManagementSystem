@@ -2,6 +2,6 @@ package application.models;
 
 public class Librarian implements PersonRole{
 	public String toString(){
-		return "Librarian";
+		return Person.PERSON_TYPE_LIBRARIAN;
 	}
 }

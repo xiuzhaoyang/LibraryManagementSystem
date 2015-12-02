@@ -14,6 +14,10 @@ import javafx.beans.property.StringProperty;
 
 public class Person {
 
+	public static final String PERSON_TYPE_ADMIN = "ADMINISTRATOR";
+	public static final String PERSON_TYPE_LIBRARIAN = "LIBRARIAN";
+	public static final String PERSON_TYPE_MEMBER = "LIB_MEMBER";
+	
 	//user properties for all fields of a model call will notify us when a property is changed
 	private final IntegerProperty pid;
 	private final StringProperty firstName;
@@ -153,9 +157,9 @@ public class Person {
     	List<PersonRole> personRolesList = new ArrayList<PersonRole>();
 
     	for(String role : roles){
-    		if(role.equals("Librarian")){
+    		if(role.equals(PERSON_TYPE_LIBRARIAN)){
     			personRolesList.add(new Librarian());
-    		}else if(role.equals("LibraryMember")){
+    		}else if(role.equals(PERSON_TYPE_MEMBER)){
     			personRolesList.add(new LibraryMember());
     		}else{
     			personRolesList.add(new Administrator());
