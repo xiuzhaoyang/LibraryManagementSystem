@@ -3,8 +3,8 @@ package application.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import application.Dao.LibmDao;
-import application.models.LibraryMember;
+import application.Dao.PersonDao;
+import application.models.Person;
 
 public class DaoTest  {
 	
@@ -16,21 +16,21 @@ public class DaoTest  {
 //		list.add(lb);
 //		LibmDao d = new LibmDao();
 		
-		List<LibraryMember> ps = new ArrayList<>();
+		List<Person> ps = new ArrayList<>();
 		
-		LibraryMember p = new LibraryMember(0, "cc", "dd", "dddd", null, null, null, null, null, null);
+		Person p = new Person(0, "cc", "dd", "dddd", null, null, null, null, null, null);
 		ps.add(p);
 		
-		LibmDao d = new LibmDao();
+		PersonDao d = new PersonDao();
 		d.saveObjects(ps);
 	}
 	
 	public static void testReadDB(){
-		LibmDao d = new LibmDao();
-		List<LibraryMember> list = d.loadObjs();
+		PersonDao d = new PersonDao();
+		List<Person> list = d.loadObjs();
 		
 		System.out.println("out size " + list.size());	
-		for(LibraryMember l : list){
+		for(Person l : list){
 			System.out.println(l);	
 		}
 		

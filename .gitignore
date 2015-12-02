@@ -1,4 +1,5 @@
 /bin
+/storage
 .DS_Store
 .idea
 LibraryManagementSystem_ccs.iml

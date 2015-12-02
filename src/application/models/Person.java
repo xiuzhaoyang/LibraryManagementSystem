@@ -1,10 +1,11 @@
 package application.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person {
+public class Person  implements Serializable{
 
 	public static final String PERSON_TYPE_ADMIN = "ADMINISTRATOR";
 	public static final String PERSON_TYPE_LIBRARIAN = "LIBRARIAN";
@@ -142,5 +143,10 @@ public class Person {
     	this.personRoles = (personRolesList);
     }
 
+    @Override
+    public String toString() {
     
+    	return "id " +pid + " firName " + firstName + " lastName " + lastName;
+    }
+    private static final long serialVersionUID = 102L;
 }
