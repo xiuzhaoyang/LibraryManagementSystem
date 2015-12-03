@@ -1,13 +1,17 @@
 package application.views;
 
+import java.util.List;
 import java.util.Optional;
 
+import application.Dao.PersonDao;
 import application.Main;
 import application.models.Person;
 import application.util.DateHelper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -21,7 +25,7 @@ import javafx.util.Callback;
 
 public class MemberOverviewController {
 	@FXML
-	private TextField isbnField;
+	private TextField idField;
 
 	@FXML
 	private TextField nameField;
@@ -62,6 +66,8 @@ public class MemberOverviewController {
 	@FXML
 	private Label rolesLabel;
 
+	private ObservableList<Person> personlist;
+
 	// Reference to the main application.
 	private Main main;
 
@@ -94,7 +100,18 @@ public class MemberOverviewController {
 //				return null;
 //			}
 //		});
-		
+
+		PersonDao personDao = new PersonDao();
+		this.personlist = FXCollections.observableArrayList();
+		List<Person> allPersons = personDao.loadALlPersons();
+		for(Person person : allPersons){
+			this.personlist.add(person);
+		}
+		this.personTable.setItems(this.personlist);
+		if(this.personlist.size() > 0){
+			showMemberDetails(this.personlist.get(0));
+		}
+
 		firstNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
 			
 			@Override
@@ -112,7 +129,6 @@ public class MemberOverviewController {
 			}
 		});
 
-		showMemberDetails(null);
 
 		personTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Person>() {
 			@Override
@@ -125,8 +141,6 @@ public class MemberOverviewController {
 
 	public void setMain(Main main){
 		this.main = main;
-
-		personTable.setItems(main.getPersonInfo());
 	}
 
 	private void showMemberDetails(Person member){
@@ -205,6 +219,62 @@ public class MemberOverviewController {
 			warnAlert.setContentText("Please select a member from the table.");
 
 			warnAlert.showAndWait();
+		}
+	}
+
+	@FXML
+	private void handleMemberIDSearch(){
+		String memberId = this.idField.getText().trim();
+		if(memberId.length() == 0){
+			this.personTable.setItems(this.personlist);
+			return ;
+		}
+		ObservableList<Person> tmpList = FXCollections.observableArrayList();
+		Alert alert = new Alert(AlertType.ERROR);
+		int targetId  = 0;
+		try{
+			targetId = Integer.parseInt(memberId);
+		}catch (NumberFormatException e){
+			alert.setContentText("Member ID must be numeric");
+			alert.showAndWait();
+			return;
+		}
+		for(Person person : this.personlist){
+			int id = person.getPid();
+			if(id == targetId){
+				tmpList.add(person);
+			}
+		}
+		if(tmpList.size() == 0) {
+			alert.setContentText("Can't find member.");
+			alert.showAndWait();
+			return;
+		}else{
+			this.personTable.setItems(tmpList);
+		}
+
+	}
+
+	@FXML
+	private void handleNameSearch(){
+		String searchName = this.nameField.getText().trim().toLowerCase();
+		if(searchName.length() == 0){
+			this.personTable.setItems(this.personlist);
+			return;
+		}
+		ObservableList<Person> tmpList = FXCollections.observableArrayList();
+		for(Person person : this.personlist){
+			if(person.getFirstName().toLowerCase().contains(searchName) || person.getLastName().toLowerCase().contains(searchName)){
+				tmpList.add(person);
+			}
+		}
+		if(tmpList.size() == 0){
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setContentText("Can't find member.");
+			alert.showAndWait();
+			return;
+		}else {
+			this.personTable.setItems(tmpList);
 		}
 	}
 }

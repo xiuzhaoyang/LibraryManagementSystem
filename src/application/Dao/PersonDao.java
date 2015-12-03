@@ -39,4 +39,9 @@ public class PersonDao extends AbstractDao<Person>{
 		
 		return null;
 	}
+
+	public List<Person> loadALlPersons(){
+		List<Person> ps = loadObjs();
+		return ps;
+	}
 }

@@ -1,5 +1,6 @@
 package application.views;
 
+import application.Dao.PersonDao;
 import application.models.Administrator;
 import application.models.Librarian;
 import application.models.Person;
@@ -105,12 +106,19 @@ public class LoginController {
 	}
 
 	private boolean checkUser(String account, String pwd, PersonRole role){
-		if(account.equals("admin") && pwd.equals("admin")){
-			List<PersonRole> roleList = new ArrayList<>();
-			roleList.add(role);
-			this.personInfo = new Person(1,"Zhaoyang","Su","4th","FARIFIELD","IA","52557","13146387943", LocalDate.now(),roleList);
-			return true;
+		PersonDao persondao = new PersonDao();
+		Person person =  persondao.loadPersonByNameAndPwd(account, pwd);
+		if(person == null ){
+			return false;
+		}else{
+			List<PersonRole> roleList =  person.getPersonRoles();
+			for(PersonRole tmpRole : roleList){
+				if(tmpRole.toString().equals(role.toString())){
+					this.personInfo = person;
+					return true;
+				}
+			}
+			return false;
 		}
-		return true;
 	}
 }

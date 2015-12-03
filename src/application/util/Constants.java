@@ -24,6 +24,8 @@ public class Constants {
 
 		List<PersonRole> list3 = new ArrayList<PersonRole>();
 		list3.add(new LibraryMember());
+		list3.add(new Administrator());
+		list3.add(new Librarian());
 
 		List<PersonRole> list4 = new ArrayList<PersonRole>();
 		list4.add(new LibraryMember());
