@@ -133,10 +133,12 @@ public class PublicationCheckoutController {
 
 	public void showCheckoutEntryDetails(CheckoutEntry entry){
 		if(entry != null){
-			//TODO:
-//			bookIdLabel.setText(entry.getPublication().getpId() + "");
+
+			bookIdLabel.setText(entry.getpId() + "");
+	//TODO:
 //			isbnLabel.setText(entry.getPublication().getISBN());
 //			titleLabel.setText(entry.getPublication().getTitle());
+
 			checkoutDateLabel.setText(DateHelper.format(entry.getCheckoutDate()));
 			dueDateLabel.setText(DateHelper.format(entry.getDueDate()));
 			returnDateLabel.setText(DateHelper.format(entry.getReturnDate()));

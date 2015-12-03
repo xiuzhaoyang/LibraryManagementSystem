@@ -103,8 +103,7 @@ public class CheckoutSceneController extends BaseController{
 		CheckoutEntry ce = new CheckoutEntry();
 		ce.seteId(ces.size() + 1);
 
-		//TODO:
-//		ce.setBookId(publication.getpId());
+		ce.setpId(publication.getpId());
 
 		ce.setCheckoutDate(LocalDate.now());
 		ce.setDueDate(dueDate);

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class CheckoutEntry  implements Serializable{
 	private  int eId; //entry id
+	private int pId;
 	private  LocalDate checkoutDate; // borrow date
 	private  LocalDate dueDate; // date should give back
 	private 	LocalDate returnDate; // actual give back date
@@ -71,6 +72,15 @@ public class CheckoutEntry  implements Serializable{
 	public void setFinePaid(float finePaid) {
 		this.finePaid = finePaid;
 	}
+
+	public int getpId() {
+		return pId;
+	}
+
+	public void setpId(int pId) {
+		this.pId = pId;
+	}
+
 
 	@Override
 	public String toString() {
