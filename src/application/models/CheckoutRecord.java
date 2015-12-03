@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutRecord implements Serializable{
+	private int ckrId;
 	int mId;
 	
 	List<CheckoutEntry> enties;
@@ -15,6 +16,12 @@ public class CheckoutRecord implements Serializable{
 	}
 	public int getmId() {
 		return mId;
+	}
+
+        public CheckoutRecord(int ckrId, int mId, List<CheckoutEntry> enties){
+		this.ckrId = ckrId;
+		this.mId = mId;
+		this.enties = enties;
 	}
 
 	public void setmId(int mId) {

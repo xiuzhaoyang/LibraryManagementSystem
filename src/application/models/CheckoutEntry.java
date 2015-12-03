@@ -5,7 +5,6 @@ import java.time.LocalDate;
 
 public class CheckoutEntry  implements Serializable{
 	private  int eId; //entry id
-	private  int bookId; // book id
 	private  LocalDate checkoutDate; // borrow date
 	private  LocalDate dueDate; // date should give back
 	private 	LocalDate returnDate; // actual give back date
@@ -13,12 +12,11 @@ public class CheckoutEntry  implements Serializable{
 	private float finePaid;
 
 	public CheckoutEntry(){
-		this(0, 0, null, null, null, false, 0.0f);
+		this(0, null, null, null, null, false, 0.0f);
 	}
 
-	public CheckoutEntry(int eId, int bookId, LocalDate checkoutDate, LocalDate dueDate, LocalDate returnDate, boolean isFine, float finePaid){
+	public CheckoutEntry(int eId, Publication publication, LocalDate checkoutDate, LocalDate dueDate, LocalDate returnDate, boolean isFine, float finePaid){
 		this.eId = eId;
-		this.bookId = bookId;
 		this.checkoutDate = checkoutDate;
 		this.dueDate = dueDate;
 		this.returnDate = returnDate;
@@ -32,14 +30,6 @@ public class CheckoutEntry  implements Serializable{
 
 	public void seteId(int eId) {
 		this.eId = eId;
-	}
-
-	public int getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
 	}
 
 	public LocalDate getCheckoutDate() {
@@ -85,7 +75,7 @@ public class CheckoutEntry  implements Serializable{
 	@Override
 	public String toString() {
 	
-		return "eid " + eId + " bookId " + bookId + " startDate " + checkoutDate + " dueDate" + dueDate;
+		return "eid " + eId  + " startDate " + checkoutDate + " dueDate" + dueDate;
 	}
 	
 	private static final long serialVersionUID = 110L;
