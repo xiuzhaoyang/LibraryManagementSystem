@@ -82,5 +82,11 @@ public class CheckoutEntry  implements Serializable{
 		this.finePaid = finePaid;
 	}
 
-
+	@Override
+	public String toString() {
+	
+		return "eid " + eId + " bookId " + bookId + " startDate " + checkoutDate + " dueDate" + dueDate;
+	}
+	
+	private static final long serialVersionUID = 110L;
 }

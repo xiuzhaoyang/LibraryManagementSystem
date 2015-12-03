@@ -50,7 +50,20 @@ public class Db {
 		List<T> list = new ArrayList<T>();
 		
 		try {
+			
+			File f = new File(OUTPUT_DIR);
+			if(!f.exists()){
+				f.mkdir();
+			}
+			
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, KEY);
+			
+			f = path.toFile();
+			
+			if(!f.exists()){
+				f.createNewFile();
+			}
+			
 			in = new ObjectInputStream(Files.newInputStream(path));
 			while(true){
 				try{
@@ -61,7 +74,10 @@ public class Db {
 			}
 			
 		} catch(Exception e) {
-			e.printStackTrace();
+			if(!(e instanceof EOFException)){
+				e.printStackTrace();	
+			}
+			
 		} finally {
 			if(in != null) {
 				try {

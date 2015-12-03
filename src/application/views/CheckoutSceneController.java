@@ -1,8 +1,12 @@
 package application.views;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import application.Dao.CheckoutRecordDao;
 import application.models.Book;
+import application.models.CheckoutEntry;
+import application.models.CheckoutRecord;
 import application.models.Person;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,6 +20,8 @@ public class CheckoutSceneController extends BaseController{
 	Person person;
 	
 	Book book;
+	
+	LocalDate dueDate;
 	
 	@FXML
 	private Label userNameLB;
@@ -53,8 +59,8 @@ public class CheckoutSceneController extends BaseController{
 			
 			@Override
 			public void handle(ActionEvent event) {
-				LocalDate date = datePicker.getValue();
-				System.out.println("Selected date: " + date);
+				dueDate = datePicker.getValue();
+				System.out.println("Selected date: " + dueDate);
 			}
 		});
 		
@@ -62,8 +68,28 @@ public class CheckoutSceneController extends BaseController{
 			
 			@Override
 			public void handle(ActionEvent event) {
-
+				CheckoutRecordDao cd = new CheckoutRecordDao();
+				CheckoutRecord cr = cd.getCheckoutRecordFromPid(person.getPid());
 				
+				System.out.println("loads rc " + cr);
+				if(cr == null){
+					cr = new CheckoutRecord();
+					cr.setmId(person.getPid());
+				}
+				
+				List<CheckoutEntry> ces = cr.getEnties();
+				CheckoutEntry ce = new CheckoutEntry();
+				ce.seteId(ces.size() + 1);
+				ce.setBookId(book.getbId());
+				ce.setCheckoutDate(LocalDate.now());
+				ce.setDueDate(dueDate);
+				
+				ces.add(ce);
+				
+				cd.saveCheckRecord(cr);
+				
+				
+				curStage.close();
 			}
 		});
 	}

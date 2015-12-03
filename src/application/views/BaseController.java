@@ -4,8 +4,8 @@ import javafx.stage.Stage;
 
 public class BaseController {
 
-	private Stage s;
+	public Stage curStage;
 	public void setCurrentStage(Stage s){
-		this.s = s;
+		this.curStage = s;
 	}
 }
