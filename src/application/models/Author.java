@@ -3,7 +3,7 @@ package application.models;
 import java.io.Serializable;
 
 public class Author  implements Serializable{
-	private String aId;
+	private int aId;
 	private String firstName;
 	private String lastName;
 	private Address address;
@@ -11,7 +11,7 @@ public class Author  implements Serializable{
 	private String description;
 	private String nationality;
 
-	public Author(String aId, String firstName, String lastName, Address address, String credential, String description, String nationality){
+	public Author(int aId, String firstName, String lastName, Address address, String credential, String description, String nationality){
 		this.aId = aId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -21,11 +21,11 @@ public class Author  implements Serializable{
 		this.nationality = nationality;
 	}
 
-	public String getaId() {
+	public int getaId() {
 		return aId;
 	}
 
-	public void setaId(String aId) {
+	public void setaId(int aId) {
 		this.aId = aId;
 	}
 

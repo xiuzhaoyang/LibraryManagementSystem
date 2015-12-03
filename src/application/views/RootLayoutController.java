@@ -25,6 +25,7 @@ public class RootLayoutController {
 
     private String MEMBER_OVERVIEW = "MemberOverview.fxml";
     private String BOOK_CHECKOUT = "BookCheckout.fxml";
+    private String ALL_PUBLICATION = "BookOverview.fxml";
 
     @FXML
     private MenuBar menubar;
@@ -71,27 +72,20 @@ public class RootLayoutController {
         memberListItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.print("member list");
+                showContentView(MEMBER_OVERVIEW);
             }
         });
 
         Menu menuBook = new Menu("book");
-        MenuItem addBookItem = new MenuItem("add book");
-        addBookItem.setOnAction(new EventHandler<ActionEvent>() {
+        MenuItem allBookItem = new MenuItem("all publication");
+        allBookItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.print("add book");
+                showContentView(ALL_PUBLICATION);
             }
         });
-        MenuItem addExitBook = new MenuItem("add a exiting book");
-        addExitBook.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.print("add a exiting book");
-            }
-        });
-        menuBook.getItems().add(addBookItem);
-        menuBook.getItems().add(addExitBook);
+
+        menuBook.getItems().add(allBookItem);
 
         menuMember.getItems().add(memberListItem);
         menuMember.getItems().add(addMemberItem);

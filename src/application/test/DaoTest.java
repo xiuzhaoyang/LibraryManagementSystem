@@ -9,7 +9,7 @@ import application.util.Constants;
 public class DaoTest  {
 	
 	public static void testWriteDB(){
-		List<Person> ps =  Constants.getPersonData(); 
+		List<Person> ps =  Constants.getPersonData();
 
 		PersonDao d = new PersonDao();
 		d.saveObjects(ps);

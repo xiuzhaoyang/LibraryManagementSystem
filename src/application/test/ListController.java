@@ -1,14 +1,13 @@
 package application.test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.print.attribute.standard.Severity;
 
 import application.Dao.PersonDao;
-import application.models.AllowedBorrowDays;
-import application.models.Book;
-import application.models.Person;
+import application.models.*;
 import application.util.Utils;
 import application.util.Utils.ISceneControllerSetting;
 import application.views.BaseController;
@@ -80,8 +79,9 @@ public class ListController {
 						Person p = dao.loadObjs().get(0);
 						
 						controller.setPerson(p);
-						Book b = new Book(111, "Western Traveling", "3j3838d73j28w8n", null,AllowedBorrowDays.SEVEN_DAYS	, null);
-						controller.setBook(b);
+//						Book b = new Book(111, "Western Traveling", "3j3838d73j28w8n", null,AllowedBorrowDays.SEVEN_DAYS	, null);
+                        Publication publiction = new Publication(1, LocalDate.now(),"book1","00001",new ArrayList<Author>(),AllowedBorrowDays.SEVEN_DAYS,new Book());
+						controller.setPublication(publiction);
 						return controller;
 					}
 				}, null);
