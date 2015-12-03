@@ -1,26 +1,16 @@
 package application.test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import application.Dao.PersonDao;
 import application.models.Person;
+import application.util.Constants;
 
 public class DaoTest  {
 	
 	public static void testWriteDB(){
-//		List<LibraryMember> list = new ArrayList<LibraryMember>();
-//		LibraryMember lb = new LibraryMember("aa", "bb", null, "111" );
-//		list.add(lb);
-//		lb = new LibraryMember("cc", "dd", null, "222");
-//		list.add(lb);
-//		LibmDao d = new LibmDao();
-		
-		List<Person> ps = new ArrayList<>();
-		
-		Person p = new Person(0, "cc", "dd", "dddd", null, null, null, null, null, null);
-		ps.add(p);
-		
+		List<Person> ps =  Constants.getPersonData(); 
+
 		PersonDao d = new PersonDao();
 		d.saveObjects(ps);
 	}

@@ -1,6 +1,8 @@
 package application.models;
 
-public class Administrator implements PersonRole{
+import java.io.Serializable;
+
+public class Administrator implements PersonRole, Serializable{
 	public String toString(){
 		return Person.PERSON_TYPE_ADMIN;
 	}

@@ -1,6 +1,8 @@
 package application.models;
 
-public class Librarian implements PersonRole{
+import java.io.Serializable;
+
+public class Librarian implements PersonRole, Serializable{
 	public String toString(){
 		return Person.PERSON_TYPE_LIBRARIAN;
 	}

@@ -11,16 +11,37 @@ public class Person  implements Serializable{
 	public static final String PERSON_TYPE_LIBRARIAN = "LIBRARIAN";
 	public static final String PERSON_TYPE_MEMBER = "LIB_MEMBER";
 	
-	//user properties for all fields of a model call will notify us when a property is changed
+	private String userName;
+	private String pwd;
+	
 	private  int pid;
 	private  String firstName;
 	private  String lastName;
+	
 	private  Address address;
 	private  String phoneNum;
 	private  LocalDate dob;
 	private List<PersonRole> personRoles;
 	private static int lastPid;
 
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	
 	/**
      * Default constructor.
      */

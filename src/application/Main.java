@@ -14,6 +14,7 @@ import application.models.Librarian;
 import application.models.LibraryMember;
 import application.models.Person;
 import application.models.PersonRole;
+import application.test.DaoTest;
 import application.views.LoginController;
 import application.views.MemberEditDialogController;
 import application.views.MemberOverviewController;
@@ -48,6 +49,9 @@ public class Main extends Application {
      * Constructor
      */
 	public Main(){
+		
+		DaoTest.testWriteDB();
+		
 		List<PersonRole> list1 = new ArrayList<PersonRole>();
 		list1.add(new LibraryMember());
 
