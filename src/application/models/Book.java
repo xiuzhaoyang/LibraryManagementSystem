@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Book implements Serializable{
-	String bId;
+	int bId;
 
 	String title;
 	String ISBN;

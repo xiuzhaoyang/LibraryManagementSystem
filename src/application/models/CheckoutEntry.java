@@ -1,121 +1,86 @@
 package application.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.FloatProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-
-public class CheckoutEntry {
-	private final IntegerProperty eId; //entry id
-	private final ObjectProperty<Book> book; // book id
-	private final ObjectProperty<LocalDate> checkoutDate; // borrow date
-	private final ObjectProperty<LocalDate> dueDate; // date should give back
-	private final ObjectProperty<LocalDate> returnDate; // actual give back date
-	private final BooleanProperty isFine;
-	private final FloatProperty finePaid;
+public class CheckoutEntry  implements Serializable{
+	private  int eId; //entry id
+	private  int bookId; // book id
+	private  LocalDate checkoutDate; // borrow date
+	private  LocalDate dueDate; // date should give back
+	private 	LocalDate returnDate; // actual give back date
+	private  boolean isFine;
+	private float finePaid;
 
 	public CheckoutEntry(){
-		this(0, null, null, null, null, false, 0.0f);
+		this(0, 0, null, null, null, false, 0.0f);
 	}
 
-	public CheckoutEntry(int eId, Book book, LocalDate checkoutDate, LocalDate dueDate, LocalDate returnDate, boolean isFine, float finePaid){
-		this.eId = new SimpleIntegerProperty(eId);
-		this.book = new SimpleObjectProperty<Book>(book);
-		this.checkoutDate = new SimpleObjectProperty<LocalDate>(checkoutDate);
-		this.dueDate = new SimpleObjectProperty<LocalDate>(dueDate);
-		this.returnDate = new SimpleObjectProperty<LocalDate>(returnDate);
-		this.isFine = new SimpleBooleanProperty(isFine);
-		this.finePaid = new SimpleFloatProperty(finePaid);
+	public CheckoutEntry(int eId, int bookId, LocalDate checkoutDate, LocalDate dueDate, LocalDate returnDate, boolean isFine, float finePaid){
+		this.eId = eId;
+		this.bookId = bookId;
+		this.checkoutDate = checkoutDate;
+		this.dueDate = dueDate;
+		this.returnDate = returnDate;
+		this.isFine = isFine;
+		this.finePaid = finePaid;
 	}
 
-	public int getEntryId(){
-		return this.eId.get();
-	}
-
-	public void setEntryId(int eId){
-		this.eId.set(eId);
-	}
-
-	public IntegerProperty entryIdProperty(){
+	public int geteId() {
 		return eId;
 	}
 
-	public Book getBook(){
-		return this.book.get();
+	public void seteId(int eId) {
+		this.eId = eId;
 	}
 
-	public void setBook(Book book){
-		this.book.set(book);
+	public int getBookId() {
+		return bookId;
 	}
 
-	public ObjectProperty<Book> bookProperty(){
-		return book;
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
 	}
 
-	public LocalDate getCheckoutDate(){
-		return this.checkoutDate.get();
-	}
-
-	public void setCheckoutDate(LocalDate checkoutDate){
-		this.checkoutDate.set(checkoutDate);
-	}
-
-	public ObjectProperty<LocalDate> checkoutProperty(){
+	public LocalDate getCheckoutDate() {
 		return checkoutDate;
 	}
 
-	public LocalDate getDueDate(){
-		return this.dueDate.get();
+	public void setCheckoutDate(LocalDate checkoutDate) {
+		this.checkoutDate = checkoutDate;
 	}
 
-	public void setDueDate(LocalDate dueDate){
-		this.checkoutDate.set(dueDate);
-	}
-
-	public ObjectProperty<LocalDate> dueDateProperty(){
+	public LocalDate getDueDate() {
 		return dueDate;
 	}
 
-	public LocalDate getReturnDate(){
-		return this.returnDate.get();
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
 	}
 
-	public void setReturnDate(LocalDate returnDate){
-		this.returnDate.set(returnDate);
-	}
-
-	public ObjectProperty<LocalDate> returnDateProperty(){
+	public LocalDate getReturnDate() {
 		return returnDate;
 	}
 
-	public Boolean getIsFine(){
-		return this.isFine.get();
+	public void setReturnDate(LocalDate returnDate) {
+		this.returnDate = returnDate;
 	}
 
-	public void setIsFine(Boolean isFine){
-		this.isFine.set(isFine);
-	}
-
-	public BooleanProperty returnIsFineProperty(){
+	public boolean isFine() {
 		return isFine;
 	}
 
-	public Float getFinePaid(){
-		return this.finePaid.get();
+	public void setFine(boolean isFine) {
+		this.isFine = isFine;
 	}
 
-	public void setFinePaid(Float finePaid){
-		this.finePaid.set(finePaid);
-	}
-
-	public FloatProperty returnFinePaidProperty(){
+	public float getFinePaid() {
 		return finePaid;
 	}
+
+	public void setFinePaid(float finePaid) {
+		this.finePaid = finePaid;
+	}
+
+
 }
