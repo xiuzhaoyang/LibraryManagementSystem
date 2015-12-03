@@ -69,7 +69,7 @@ public class Utils {
 		
 		PublicationDao pb = new PublicationDao();
 		for(CheckoutEntry ce : cr.getEnties()){
-			Publication pBook = pb.getPublicationByPid(ce.getBookId());
+			Publication pBook = pb.getPublicationByPid(ce.getpId());
 			System.out.println(ce.geteId() + "    " +pBook.getTitle() + "     " + ce.getCheckoutDate() + "    " + ce.getDueDate() + "     " + (ce.getReturnDate() == null ? "NOT RETURN " :   ce.getReturnDate()) );
 		}
 		

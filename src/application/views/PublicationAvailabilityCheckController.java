@@ -142,10 +142,13 @@ public class PublicationAvailabilityCheckController {
 	public void showPublicationCopyDetails(PublicationCopy publicationCopy) {
 		if (publicationCopy != null) {
 			publicationIdLabel.setText(publicationCopy.getpId() + "");
-			isbnLabel.setText(publicationCopy.getPublication().getISBN());
-			titleLabel.setText(publicationCopy.getPublication().getTitle());
+			
+			//TODO  to load publication
+			Publication pb  =  null;
+			isbnLabel.setText(pb.getISBN());
+			titleLabel.setText(pb.getTitle());
 
-			List<Author> authors = publicationCopy.getPublication().getAuthors();
+			List<Author> authors = pb.getAuthors();
 			StringBuilder sb = new StringBuilder();
 			for (Author a : authors) {
 				sb.append(a.getFirstName());
@@ -156,7 +159,7 @@ public class PublicationAvailabilityCheckController {
 			sb.deleteCharAt(sb.length() - 1);
 			authorsLabel.setText(sb.toString());
 
-			allowedBorrowDaysLabel.setText(publicationCopy.getPublication().getAllowedBorrowDays() + "");
+			allowedBorrowDaysLabel.setText(pb.getAllowedBorrowDays() + "");
 
 			if (publicationCopy.isAvailable()) {
 				availabilityLabel.setText("true");
