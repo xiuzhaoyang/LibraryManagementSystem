@@ -29,10 +29,10 @@
                                     <padding>
                                         <Insets left="10.0" />
                                     </padding></Label>
-                                <TextField  prefHeight="31.0" prefWidth="94.0" GridPane.columnIndex="1" />
-                                <Button mnemonicParsing="false" text="Search" GridPane.columnIndex="2" />
-                                <Button mnemonicParsing="false" text="Search" GridPane.columnIndex="5" />
-                                <TextField prefHeight="31.0" prefWidth="95.0" GridPane.columnIndex="4" />
+                                <TextField onAction="#handleSearchByISBN" prefHeight="31.0" prefWidth="94.0" GridPane.columnIndex="1" />
+                                <Button mnemonicParsing="false" onAction="#handleSearchByISBN" text="Search" GridPane.columnIndex="2" />
+                                <Button mnemonicParsing="false" onAction="#handleSearchByName" text="Search" GridPane.columnIndex="5" />
+                                <TextField onAction="#handleSearchByName" prefHeight="31.0" prefWidth="95.0" GridPane.columnIndex="4" />
                                 <Label alignment="CENTER_RIGHT" text="Name" GridPane.columnIndex="3">
                                     <padding>
                                         <Insets left="50.0" />
@@ -48,10 +48,10 @@
                             <items>
                                 <AnchorPane>
                                     <children>
-                                        <TableView layoutX="-1.0" layoutY="7.0" prefHeight="387.0" prefWidth="198.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <TableView fx:id="tableView" layoutX="-1.0" layoutY="7.0" prefHeight="387.0" prefWidth="198.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columns>
-                                                <TableColumn prefWidth="98.0" text="ISBN" />
-                                                <TableColumn prefWidth="99.0" text="Name" />
+                                                <TableColumn fx:id="ISBNColumn" prefWidth="98.0" text="ISBN" />
+                                                <TableColumn fx:id="nameColumn" prefWidth="99.0" text="Name" />
                                             </columns>
                                             <columnResizePolicy>
                                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -78,30 +78,31 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Label text="First Name" />
-                                                <Label text="Last Name" GridPane.rowIndex="1" />
-                                                <Label text="Street" GridPane.rowIndex="3" />
-                                                <Label text="City" GridPane.rowIndex="4" />
-                                                <Label text="State" GridPane.rowIndex="5" />
-                                                <Label text="Zip Code" GridPane.rowIndex="6" />
-                                                <Label text="Phone" GridPane.rowIndex="7" />
-                                                <Label fx:id="firstNameLabel" text="Label" GridPane.columnIndex="1" />
-                                                <Label fx:id="lastNameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <Label fx:id="streetLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <Label fx:id="cityLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <Label fx:id="stateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <Label fx:id="zipCodeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                <Label fx:id="phoneNumLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                                <Label text="Birthday" GridPane.rowIndex="2" />
-                                                <Label fx:id="birthdayLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <Label text="Roles" GridPane.rowIndex="8" />
-                                                <Label fx:id="rolesLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                                <Label text="id" />
+                                                <Label GridPane.rowIndex="1" />
+                                                <Label text="authors" GridPane.rowIndex="3" />
+                                                <Label text="borrow days" GridPane.rowIndex="4" />
+                                                <Label text="add date" GridPane.rowIndex="5" />
+                                                <Label text="type" GridPane.rowIndex="6" />
+                                                <Label text="count" GridPane.rowIndex="7" />
+                                                <Label fx:id="idLabel" text="Label" GridPane.columnIndex="1" />
+                                                <Label fx:id="ISBNLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label fx:id="authorsLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Label fx:id="borrowDaysLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Label fx:id="addDateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <Label fx:id="typeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                <Label fx:id="countLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                                <Label text="tittle" GridPane.rowIndex="2" />
+                                                <Label fx:id="titleLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label text="available count" GridPane.rowIndex="8" />
+                                                <Label fx:id="availableLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <Label text="ISBN" GridPane.rowIndex="1" />
                                             </children>
                                         </GridPane>
                                         <Label layoutX="13.0" layoutY="14.0" text="Person Details" />
-                                        <Button layoutX="161.0" layoutY="332.0" mnemonicParsing="false" text="New..." />
-                                        <Button layoutX="239.0" layoutY="332.0" mnemonicParsing="false" text="Edit..." />
-                                        <Button layoutX="316.0" layoutY="332.0" mnemonicParsing="false" text="Delete" />
+                                        <Button layoutX="161.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleAddPublication" text="New..." />
+                                        <Button layoutX="239.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleEditPublication" text="Edit..." />
+                                        <Button layoutX="316.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleDeletePublication" text="Delete" />
                                     </children>
                                 </AnchorPane>
                             </items>

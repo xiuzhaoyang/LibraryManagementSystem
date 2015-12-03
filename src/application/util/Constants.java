@@ -86,8 +86,11 @@ public class Constants {
 		bk4.addCopy(LocalDate.of(2012, 3, 12), bk4);
 		bk4.addCopy(LocalDate.of(2013, 4, 1), bk4);
 		bk4.addCopy(LocalDate.of(2015, 8, 8), bk4);
+		publicationList.add(bk4);
+		publicationList.add(bk5);
+		publicationList.add(bk6);
 
-		return null;
+		return publicationList;
 	}
 	
 }

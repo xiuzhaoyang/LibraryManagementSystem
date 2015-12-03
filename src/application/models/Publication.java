@@ -65,12 +65,10 @@ public class Publication {
 		return authors;
 	}
 
+
+
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
-	}
-
-	public AllowedBorrowDays getAllowedBorrowkDays() {
-		return allowedBorrowDays;
 	}
 
 	public void setAllowedBorrowkDays(AllowedBorrowDays allowedBorrowDays) {
@@ -115,6 +113,34 @@ public class Publication {
 //		this.publicationCopies = publicationCopies;
 		this.publicationType = publicationType;
 		this.addCopy(addDate, this);
+	}
+
+
+	public String getAuthorString(){
+		String tmpStr = "";
+		for(Author author : this.authors){
+			if(tmpStr.length() != 0){
+				tmpStr += ",";
+
+			}
+
+			tmpStr += author.getFirstName()+ " " + author.getLastName();
+		}
+		return tmpStr;
+	}
+
+	public int getCopyCount(){
+		return  this.publicationCopies.size();
+	}
+
+	public int getAvailableCount(){
+		int i = 0;
+		for(PublicationCopy copy : this.publicationCopies){
+			if(copy.isAvailable()){
+				i++;
+			}
+		}
+		return  i;
 	}
 
 }
