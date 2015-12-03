@@ -1,6 +1,7 @@
 package application.views;
 
 import application.models.Administrator;
+import application.models.Librarian;
 import application.models.Person;
 import application.models.PersonRole;
 import javafx.fxml.FXML;
@@ -51,18 +52,21 @@ public class LoginController {
 		// }
 
 		String role = "";
+		PersonRole personRole = null;
 
 		if (libranianField.isSelected()) {
 			role = "Libranian";
+			personRole = new Librarian();
 		}
 
 		if (adminField.isSelected()) {
 			role = "Admin";
+			personRole = new Administrator();
 		}
 
-		if(supernField.isSelected()){
-			role = "Super";
-		}
+//		if(supernField.isSelected()){
+//			role = "Super";
+//		}
 
 		Alert alert = new Alert(AlertType.ERROR);
 
@@ -78,7 +82,7 @@ public class LoginController {
 			alert.setContentText("Please choose a role.");
 			alert.showAndWait();
 			return ;
-		}else if(!checkUser(username,password,role)){
+		}else if(!checkUser(username,password,personRole)){
 			alert.setContentText("Either your name or password is wrong.");
 			alert.showAndWait();
 			return ;
@@ -100,10 +104,10 @@ public class LoginController {
 		return this.personInfo;
 	}
 
-	private boolean checkUser(String account, String pwd, String role){
+	private boolean checkUser(String account, String pwd, PersonRole role){
 		if(account.equals("admin") && pwd.equals("admin")){
 			List<PersonRole> roleList = new ArrayList<>();
-			roleList.add(new Administrator());
+			roleList.add(role);
 			this.personInfo = new Person(1,"Zhaoyang","Su","4th","FARIFIELD","IA","52557","13146387943", LocalDate.now(),roleList);
 			return true;
 		}

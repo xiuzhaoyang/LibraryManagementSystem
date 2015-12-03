@@ -24,6 +24,7 @@ import java.io.IOException;
 public class RootLayoutController {
 
     private String MEMBER_OVERVIEW = "MemberOverview.fxml";
+    private String BOOK_CHECKOUT = "BookCheckout.fxml";
 
     @FXML
     private MenuBar menubar;
@@ -66,6 +67,13 @@ public class RootLayoutController {
                 System.out.print("add member");
             }
         });
+        MenuItem memberListItem = new MenuItem("member list");
+        memberListItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.print("member list");
+            }
+        });
 
         Menu menuBook = new Menu("book");
         MenuItem addBookItem = new MenuItem("add book");
@@ -85,7 +93,9 @@ public class RootLayoutController {
         menuBook.getItems().add(addBookItem);
         menuBook.getItems().add(addExitBook);
 
+        menuMember.getItems().add(memberListItem);
         menuMember.getItems().add(addMemberItem);
+
 
         menus.add(menuMember);
         menus.add(menuBook);
@@ -93,13 +103,36 @@ public class RootLayoutController {
     }
 
     public void initLibrarianLayout() {
+        ObservableList<Menu> menuList = this.menubar.getMenus();
+        menuList.clear();
 
+        Menu checkoutMenu = new Menu("checkout");
+        MenuItem checkoutBookItem = new MenuItem("checkout book");
+        checkoutBookItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showContentView(BOOK_CHECKOUT);
+            }
+        });
+
+        MenuItem recordItem = new MenuItem("checkout record");
+        recordItem.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.print("checkout record");
+            }
+        });
+
+        ObservableList<MenuItem> itemList = checkoutMenu.getItems();
+        itemList.add(checkoutBookItem);
+        itemList.add(recordItem);
+        menuList.add(checkoutMenu);
+        showContentView(BOOK_CHECKOUT);
     }
 
 
     private void showContentView(String fileName){
         try {
-
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("views/"+fileName));
             AnchorPane contentView = (AnchorPane) loader.load();

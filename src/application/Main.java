@@ -1,38 +1,27 @@
 package application;
 
 
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import application.models.Administrator;
-import application.models.Book;
-import application.models.CheckoutRecord;
-import application.models.Librarian;
-import application.models.LibraryMember;
-import application.models.Person;
-import application.models.PersonRole;
+import application.models.*;
 import application.test.DaoTest;
 import application.views.LoginController;
 import application.views.MemberEditDialogController;
 import application.views.MemberOverviewController;
 import application.views.RootLayoutController;
 import javafx.application.Application;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main extends Application {
