@@ -2,6 +2,12 @@ package application.util;
 
 import java.io.IOException;
 
+import application.Dao.CheckoutRecordDao;
+import application.Dao.PublicationDao;
+import application.models.CheckoutEntry;
+import application.models.CheckoutRecord;
+import application.models.Person;
+import application.models.Publication;
 import application.views.BaseController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,5 +47,31 @@ public class Utils {
 		}
 		
 		s.show();
+	}
+	
+	public static void printCheckoutRecordAccordingMember(Person p){
+		
+		System.out.println("Member Name: " + p.getFirstName() + " " + p.getLastName());
+		System.out.println("Member ID  : " + p.getPid());
+		System.out.println("");
+		System.out.println("---------------------------------------------------------");
+		System.out.println("");
+		
+		System.out.println("Entry Id    Book    CheckoutDate    DueDate     ReturnDate");
+		
+		CheckoutRecordDao crd = new CheckoutRecordDao();
+		CheckoutRecord cr = crd.getCheckoutRecordFromPid(p.getPid());
+		
+		if(cr == null || cr.getEnties() == null || cr.getEnties().isEmpty()){
+			System.out.println("           NO CHECKOUT RECORD");
+			return;
+		}
+		
+		PublicationDao pb = new PublicationDao();
+		for(CheckoutEntry ce : cr.getEnties()){
+			Publication pBook = pb.getPublicationByPid(ce.getBookId());
+			System.out.println(ce.geteId() + "    " +pBook.getTitle() + "     " + ce.getCheckoutDate() + "    " + ce.getDueDate() + "     " + (ce.getReturnDate() == null ? "NOT RETURN " :   ce.getReturnDate()) );
+		}
+		
 	}
 }
