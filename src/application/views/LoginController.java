@@ -114,6 +114,9 @@ public class LoginController {
 			List<PersonRole> roleList =  person.getPersonRoles();
 			for(PersonRole tmpRole : roleList){
 				if(tmpRole.toString().equals(role.toString())){
+					List<PersonRole> tmpRoleList = new ArrayList<PersonRole>();
+					tmpRoleList.add(tmpRole);
+					person.setPersonRoles(tmpRoleList);
 					this.personInfo = person;
 					return true;
 				}
