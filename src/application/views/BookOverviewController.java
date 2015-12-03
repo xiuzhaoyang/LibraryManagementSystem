@@ -1,17 +1,16 @@
 package application.views;
 
+import java.util.List;
+
 import application.models.Publication;
-import com.sun.xml.internal.rngom.parse.host.Base;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-import java.util.List;
-
 /**
  * Created by su on 12/3/15.
  */
-public class BookOverviewController extends Base {
+public class BookOverviewController extends BaseController {
     @FXML
     private TextField ISBNSearchField;
 
