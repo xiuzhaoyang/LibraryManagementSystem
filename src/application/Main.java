@@ -303,7 +303,8 @@ public class Main extends Application {
 			dialogStage.setScene(scene);
 
 			MemberEditDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
+
+//			controller.setDialogStage(dialogStage);
 			controller.setMember(member);
 
 			dialogStage.showAndWait();

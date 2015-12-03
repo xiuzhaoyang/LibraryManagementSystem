@@ -61,13 +61,13 @@ public class RootLayoutController {
         menus.clear();
 
         Menu menuMember = new Menu("member");
-        MenuItem addMemberItem = new MenuItem("add member");
-        addMemberItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.print("add member");
-            }
-        });
+//        MenuItem addMemberItem = new MenuItem("add member");
+//        addMemberItem.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                System.out.print("add member");
+//            }
+//        });
         MenuItem memberListItem = new MenuItem("member list");
         memberListItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -88,7 +88,7 @@ public class RootLayoutController {
         menuBook.getItems().add(allBookItem);
 
         menuMember.getItems().add(memberListItem);
-        menuMember.getItems().add(addMemberItem);
+//        menuMember.getItems().add(addMemberItem);
 
 
         menus.add(menuMember);

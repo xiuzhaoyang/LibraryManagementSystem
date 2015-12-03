@@ -1,6 +1,7 @@
 package application.views;
 
 import application.models.Address;
+import application.models.IEditPerson;
 import application.models.Person;
 import application.util.DateHelper;
 import javafx.fxml.FXML;
@@ -10,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class MemberEditDialogController {
+public class MemberEditDialogController extends BaseController  {
 	@FXML
 	private Label idLabel;
 
@@ -41,20 +42,30 @@ public class MemberEditDialogController {
 	@FXML
 	private TextField personRolesField;
 
-	private Stage dialogStage;
+	private boolean isEdit = true;
+
+//	private Stage dialogStage;
 	private Person member;
 	private boolean isOk = false;
 
+	IEditPerson iEditPerson;
 	@FXML
 	private void initialize(){
 
 	}
 
-	public void setDialogStage(Stage dialogStage){
-		this.dialogStage = dialogStage;
+//	public void setDialogStage(Stage dialogStage){
+//		this.dialogStage = dialogStage;
+//	}
+
+	public void setOverView(IEditPerson ie){
+		iEditPerson = ie;
 	}
 
 	public void setMember(Person member){
+		if(member.getPid() == 0){
+			this.isEdit = false;
+		}
 		this.member = member;
 
 //		int id = member.getId();
@@ -94,13 +105,14 @@ public class MemberEditDialogController {
 			member.setPersonRoleString(personRolesField.getText());
 
 			isOk = true;
-			dialogStage.close();
+			iEditPerson.editPerson(member,this.isEdit);
+			curStage.close();
 		}
 	}
 
 	@FXML
 	private void handleCancel(){
-		dialogStage.close();
+		curStage.close();
 	}
 
 	private boolean isInputValid() {
@@ -164,7 +176,7 @@ public class MemberEditDialogController {
 			return true;
 		}else{
 			Alert errorAlert = new Alert(AlertType.ERROR);
-			errorAlert.initOwner(dialogStage);
+			errorAlert.initOwner(curStage);
 			errorAlert.setTitle("You have invalid Fields");
 			errorAlert.setHeaderText("Please check your input");
 			errorAlert.setContentText(sb.toString());

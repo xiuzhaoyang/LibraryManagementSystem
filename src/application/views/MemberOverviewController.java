@@ -5,14 +5,17 @@ import java.util.Optional;
 
 import application.Dao.PersonDao;
 import application.Main;
+import application.models.IEditPerson;
 import application.models.Person;
 import application.util.DateHelper;
+import application.util.Utils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -23,7 +26,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 
-public class MemberOverviewController {
+public class MemberOverviewController implements IEditPerson {
 	@FXML
 	private TextField idField;
 
@@ -170,28 +173,47 @@ public class MemberOverviewController {
 	@FXML
 	private void handleCreateMember(){
 		Person p = new Person();
-		boolean isOk = main.showPersonEditDialog(p);
+		Utils.gotoNextScene(MemberEditDialogController.class, "MemberEditDialog.fxml", new Utils.ISceneControllerSetting() {
+			@Override
+			public BaseController prepareForController(FXMLLoader fxmlLoader) {
+				MemberEditDialogController controller = fxmlLoader.getController();
+				controller.setMember(p);
+				controller.setOverView(MemberOverviewController.this);
+				return  controller;
 
-		if(isOk){
-			//TODO
-			PersonDao pd = new PersonDao(); 
-			pd.loadALlPersons().add(p);
-			
-		}
+			}
+		},null);
+
+//		boolean isOk = main.showPersonEditDialog(p);
+
+//		if(isOk){
+//			//TODO
+//			PersonDao pd = new PersonDao();
+//			pd.loadALlPersons().add(p);
+//
+//		}
 	}
 
 	@FXML
 	private void handleEditMember(){
 		Person selectedMember = personTable.getSelectionModel().getSelectedItem();
 		if(selectedMember != null){
-			boolean isOk = main.showPersonEditDialog(selectedMember);
+//			boolean isOk = main.showPersonEditDialog(selectedMember);
+			Utils.gotoNextScene(MemberEditDialogController.class, "MemberEditDialog.fxml", new Utils.ISceneControllerSetting() {
+				@Override
+				public BaseController prepareForController(FXMLLoader fxmlLoader) {
+					MemberEditDialogController controller = fxmlLoader.getController();
+					controller.setMember(selectedMember);
+					controller.setOverView(MemberOverviewController.this);
+					return  controller;
 
-			if(isOk){
-				showMemberDetails(selectedMember);
-			}
+				}
+			},null);
+
+
 		}else{
 			Alert warnAlert = new Alert(AlertType.WARNING);
-			warnAlert.initOwner(main.getPrimaryStage());
+//			warnAlert.initOwner(main.getPrimaryStage());
 			warnAlert.setTitle("No Member Selected");
 			warnAlert.setHeaderText("No member Selected");
 			warnAlert.setContentText("Please select a member from the table.");
@@ -253,6 +275,17 @@ public class MemberOverviewController {
 			return;
 		}else {
 			this.personTable.setItems(tmpList);
+		}
+	}
+
+	@Override
+	public void editPerson(Person p, boolean isNew) {
+		if(isNew)
+		{
+			this.personlist.add(p);
+			this.personTable.setItems(this.personlist);
+		}else {
+			showMemberDetails(p);
 		}
 	}
 }
