@@ -1,6 +1,7 @@
 package application.Dao;
 
 import java.io.EOFException;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -19,6 +20,11 @@ public class Db {
 
 		ObjectOutputStream out = null;
 		try {
+			File f = new File(OUTPUT_DIR);
+			if(!f.exists()){
+				f.mkdir();
+			}
+			
 			Path path = FileSystems.getDefault().getPath(OUTPUT_DIR, KEY);
 
 			out = new ObjectOutputStream(Files.newOutputStream(path));
