@@ -80,7 +80,7 @@ public class ListController {
 						Person p = dao.loadObjs().get(0);
 						
 						controller.setPerson(p);
-						Book b = new Book("111", "Western Traveling", "3j3838d73j28w8n", null,AllowedBorrowDays.SEVEN_DAYS	, null);
+						Book b = new Book(111, "Western Traveling", "3j3838d73j28w8n", null,AllowedBorrowDays.SEVEN_DAYS	, null);
 						controller.setBook(b);
 						return controller;
 					}

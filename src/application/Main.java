@@ -110,8 +110,8 @@ public class Main extends Application {
 //		}
 
 		this.primaryStage = primaryStage;
-		showListView();
-//		showLogin();
+//		showListView();
+		showLogin();
 //		initRootLayout();
 //		showMemberOverview();
 	}

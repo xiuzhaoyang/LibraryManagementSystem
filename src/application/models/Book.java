@@ -14,11 +14,11 @@ public class Book implements Serializable{
 
 	List<BookCopy> bookCopies;
 
-	public String getbId() {
+	public int getbId() {
 		return bId;
 	}
 
-	public void setbId(String bId) {
+	public void setbId(int bId) {
 		this.bId = bId;
 	}
 
@@ -62,7 +62,7 @@ public class Book implements Serializable{
 		this.bookCopies = bookCopies;
 	}
 
-	public Book(String bId, String title, String ISBN, List<Author> authors, AllowedBorrowDays bookDay, List<BookCopy> bookCopies){
+	public Book(int bId, String title, String ISBN, List<Author> authors, AllowedBorrowDays bookDay, List<BookCopy> bookCopies){
 		this.bId = bId;
 		this.title = title;
 		this.ISBN = ISBN;
