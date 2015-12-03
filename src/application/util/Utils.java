@@ -14,9 +14,9 @@ public class Utils {
 		public BaseController prepareForController(FXMLLoader fxmlLoader);
 	}
 	
-	public static void gotoNextScene(Object o , String resourceName, ISceneControllerSetting i, Stage preStage){
+	public static void gotoNextScene(Class z, String resourceName, ISceneControllerSetting i, Stage preStage){
 		
-		FXMLLoader fxmlLoader = new FXMLLoader(o.getClass().getResource(resourceName));     
+		FXMLLoader fxmlLoader = new FXMLLoader(z.getResource(resourceName));     
 
     	Parent root = null;
 		try {

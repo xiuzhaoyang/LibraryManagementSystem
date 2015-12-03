@@ -3,9 +3,16 @@ package application.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.print.attribute.standard.Severity;
+
+import application.Dao.PersonDao;
+import application.models.AllowedBorrowDays;
+import application.models.Book;
+import application.models.Person;
 import application.util.Utils;
 import application.util.Utils.ISceneControllerSetting;
 import application.views.BaseController;
+import application.views.CheckoutSceneController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -63,13 +70,18 @@ public class ListController {
             public void handle(MouseEvent event) {
             	
             	
-            	Utils.gotoNextScene(ListController.this, "TestPas.fxml", new ISceneControllerSetting() {
+            	Utils.gotoNextScene(CheckoutSceneController.class, "CheckoutScene.fxml", new ISceneControllerSetting() {
 					
 					@Override
 					public BaseController prepareForController(FXMLLoader fxmlLoader) {
-						TestController controller = fxmlLoader.<TestController>getController();
-						controller.setText("xxxx");
-
+						CheckoutSceneController controller = fxmlLoader.<CheckoutSceneController>getController();
+						
+						PersonDao dao = new PersonDao();
+						Person p = dao.loadObjs().get(0);
+						
+						controller.setPerson(p);
+						Book b = new Book("111", "Western Traveling", "3j3838d73j28w8n", null,AllowedBorrowDays.SEVEN_DAYS	, null);
+						controller.setBook(b);
 						return controller;
 					}
 				}, null);

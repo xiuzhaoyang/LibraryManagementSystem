@@ -1,6 +1,8 @@
 package application.models;
 
-public class Author {
+import java.io.Serializable;
+
+public class Author  implements Serializable{
 	private String aId;
 	private String firstName;
 	private String lastName;
@@ -18,4 +20,62 @@ public class Author {
 		this.description = description;
 		this.nationality = nationality;
 	}
+
+	public String getaId() {
+		return aId;
+	}
+
+	public void setaId(String aId) {
+		this.aId = aId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String getCredential() {
+		return credential;
+	}
+
+	public void setCredential(String credential) {
+		this.credential = credential;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+	
+	private static final long serialVersionUID = 104L;
 }
