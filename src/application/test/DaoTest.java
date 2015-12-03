@@ -2,8 +2,12 @@ package application.test;
 
 import java.util.List;
 
+import application.Dao.CheckoutRecordDao;
 import application.Dao.PersonDao;
+import application.Dao.PublicationDao;
+import application.models.CheckoutRecord;
 import application.models.Person;
+import application.models.Publication;
 import application.util.Constants;
 
 public class DaoTest  {
@@ -14,7 +18,14 @@ public class DaoTest  {
 		PersonDao d = new PersonDao();
 		d.saveObjects(ps);
 		
+		List<Publication> pbList = Constants.getPublications();
 		
+		PublicationDao pbd = new PublicationDao();
+		pbd.saveObjects(pbList);
+		
+		CheckoutRecord crs = Constants.getCheckoutRecord();
+		CheckoutRecordDao crd = new CheckoutRecordDao();
+		crd.addCheckoutRecord(crs);
 	}
 	
 	public static void testReadDB(){

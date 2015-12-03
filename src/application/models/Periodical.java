@@ -1,9 +1,10 @@
 package application.models;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.io.Serializable;
 
-public class Periodical  implements PublicationType {
+public class Periodical  implements PublicationType, Serializable {
+	private static final long serialVersionUID = 1109L;
+	
 	public Periodical(){
 
 	}

@@ -1,5 +1,6 @@
 package application.views;
 
+import application.Dao.PublicationDao;
 import application.models.AllowedBorrowDays;
 import application.models.Publication;
 import application.util.Constants;
@@ -82,7 +83,8 @@ public class BookOverviewController extends BaseController {
             }
         });
 
-        List<Publication> list = Constants.getPublications();
+        PublicationDao pd = new PublicationDao();
+        List<Publication> list = pd.loadAllPublication();
         this.publicationList = FXCollections.observableList(list);
         this.tableView.setItems(this.publicationList);
 

@@ -75,31 +75,6 @@ public class MemberOverviewController {
 
 	@FXML
 	private void initialize(){
-//		firstNameColumn.setCellFactory(new Callback<TableColumn<Person,String>, TableCell<Person,String>>() {
-//			
-//			@Override
-//			public TableCell<Person, String> call(TableColumn<Person, String> param) {
-//				
-//				return new TableCell<Person, String>(){
-//					@Override
-//					protected void updateItem(String item, boolean empty) {
-//						// TODO Auto-generated method stub
-//						super.updateItem(item, empty);
-//						
-//						
-//					}
-//				};
-//			}
-//		});
-		
-//		firstNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
-//			
-//			@Override
-//			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
-//				// TODO Auto-generated method stub
-//				return null;
-//			}
-//		});
 
 		PersonDao personDao = new PersonDao();
 		this.personlist = FXCollections.observableArrayList();
@@ -198,7 +173,10 @@ public class MemberOverviewController {
 		boolean isOk = main.showPersonEditDialog(p);
 
 		if(isOk){
-			main.getPersonInfo().add(p);
+			//TODO
+			PersonDao pd = new PersonDao(); 
+			pd.loadALlPersons().add(p);
+			
 		}
 	}
 

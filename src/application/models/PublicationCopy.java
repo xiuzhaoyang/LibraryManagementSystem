@@ -13,7 +13,7 @@ public class PublicationCopy implements Serializable{
 	private int pId;		//publication Id
 	private String pcId;	//publication copyId
 	private LocalDate addDate;
-	
+	private boolean available;
 
 
 	public LocalDate getAddDate() {
@@ -24,7 +24,7 @@ public class PublicationCopy implements Serializable{
 		this.addDate = addDate;
 	}
 
-	private boolean available;
+	
 
 	public int getpId() {
 		return pId;

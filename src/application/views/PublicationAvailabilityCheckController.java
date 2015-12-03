@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import application.Main;
+import application.Dao.PublicationDao;
 import application.models.Author;
 import application.models.Publication;
 import application.models.PublicationCopy;
@@ -179,7 +180,9 @@ public class PublicationAvailabilityCheckController {
 	public void setMain(Main main, String isbn) {
 		this.main = main;
 
-		List<Publication> publications = main.getPublications();
+		PublicationDao pd = new PublicationDao();
+		
+		List<Publication> publications = pd.loadAllPublication();
 
 		for (Publication p : publications) {
 			if (p.getISBN().equals(isbn)) {

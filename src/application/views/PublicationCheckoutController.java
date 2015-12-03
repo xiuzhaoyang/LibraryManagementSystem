@@ -1,6 +1,9 @@
 package application.views;
 
+import java.util.List;
+
 import application.Main;
+import application.Dao.CheckoutRecordDao;
 import application.models.CheckoutEntry;
 import application.models.CheckoutRecord;
 import application.models.PublicationCopy;
@@ -105,7 +108,8 @@ public class PublicationCheckoutController {
 	public void setMain(Main main, int memberId){
 		this.main = main;
 
-		ObservableList<CheckoutRecord> records = main.getCheckRecordData();
+		CheckoutRecordDao crd = new CheckoutRecordDao();
+		List<CheckoutRecord> records =  crd.loadObjs(); //main.getCheckRecordData();
 		ObservableList<CheckoutEntry> olist = FXCollections.observableArrayList();
 		boolean isMemberFound = false;
 

@@ -30,4 +30,5 @@ public class PublicationDao extends AbstractDao<Publication> {
     	
     	return null;
     }
+    
 }

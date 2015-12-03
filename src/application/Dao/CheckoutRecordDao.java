@@ -2,6 +2,7 @@ package application.Dao;
 
 import java.util.List;
 
+import application.models.CheckoutEntry;
 import application.models.CheckoutRecord;
 
 public class CheckoutRecordDao extends AbstractDao<CheckoutRecord>{
@@ -26,6 +27,21 @@ public class CheckoutRecordDao extends AbstractDao<CheckoutRecord>{
 		return null;
 	}
 
+	public void addCheckoutRecord(CheckoutRecord cr){
+		List<CheckoutRecord> rds = loadObjs();
+		boolean isFind = false;
+		for(CheckoutRecord ce : rds){
+			if(cr.getmId() == ce.getmId()){
+				isFind = true;
+			}
+		}
+		
+		if(!isFind){
+			rds.add(cr);
+			saveObjects(rds);
+		}
+	}
+	
 	public void saveCheckRecord(CheckoutRecord cr){
 		List<CheckoutRecord> rds = loadObjs();
 		
