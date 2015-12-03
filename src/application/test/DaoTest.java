@@ -13,6 +13,8 @@ public class DaoTest  {
 
 		PersonDao d = new PersonDao();
 		d.saveObjects(ps);
+		
+		
 	}
 	
 	public static void testReadDB(){

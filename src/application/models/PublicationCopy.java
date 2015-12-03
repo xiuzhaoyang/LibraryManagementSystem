@@ -1,20 +1,19 @@
 package application.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class PublicationCopy {
-	public Publication getPublication() {
-		return publication;
-	}
-
-	public void setPublication(Publication publication) {
-		this.publication = publication;
-	}
-
+public class PublicationCopy implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1100L;
+	
 	private int pId;		//publication Id
 	private String pcId;	//publication copyId
 	private LocalDate addDate;
-	private Publication publication;
+	
 
 
 	public LocalDate getAddDate() {
@@ -65,7 +64,6 @@ public class PublicationCopy {
 		this.pcId = pcId;
 		this.addDate = addDate;
 		this.available = available;
-		this.publication = publication;
 //		pcAmount++;
 	}
 }
