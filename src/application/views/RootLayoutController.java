@@ -60,7 +60,7 @@ public class RootLayoutController {
         ObservableList<Menu> menus = menubar.getMenus();
         menus.clear();
 
-        Menu menuMember = new Menu("member");
+        Menu menuMember = new Menu("Member");
 //        MenuItem addMemberItem = new MenuItem("add member");
 //        addMemberItem.setOnAction(new EventHandler<ActionEvent>() {
 //            @Override
@@ -76,7 +76,7 @@ public class RootLayoutController {
             }
         });
 
-        Menu menuBook = new Menu("book");
+        Menu menuBook = new Menu("Book");
         MenuItem allBookItem = new MenuItem("all publication");
         allBookItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -100,7 +100,7 @@ public class RootLayoutController {
         ObservableList<Menu> menuList = this.menubar.getMenus();
         menuList.clear();
 
-        Menu checkoutMenu = new Menu("checkout");
+        Menu checkoutMenu = new Menu("Checkout");
         MenuItem checkoutBookItem = new MenuItem("checkout book");
         checkoutBookItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
