@@ -30,5 +30,16 @@ public class PublicationDao extends AbstractDao<Publication> {
     	
     	return null;
     }
+
+    public Publication getPublicationByISBN(String ISBN){
+        List<Publication>  publicationList = this.loadObjs();
+
+        for(Publication p: publicationList){
+            if(ISBN.equals(p.getISBN())){
+                return p;
+            }
+        }
+        return null;
+    }
     
 }

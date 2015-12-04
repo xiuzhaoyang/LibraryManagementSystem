@@ -1,5 +1,6 @@
 package application.views;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import application.Main;
@@ -8,16 +9,15 @@ import application.models.CheckoutEntry;
 import application.models.CheckoutRecord;
 import application.models.PublicationCopy;
 import application.util.DateHelper;
+import application.util.Utils;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.stage.Stage;
@@ -32,6 +32,9 @@ public class PublicationCheckoutController {
 
 	@FXML
 	private Label bookIdLabel;
+
+	@FXML
+	private TextField searchField;
 
 	@FXML
 	private Label isbnLabel;
@@ -53,6 +56,14 @@ public class PublicationCheckoutController {
 
 	@FXML
 	private Label finePaidLabel;
+
+	@FXML
+	private Button checkBookBtn;
+
+	@FXML
+	private Button returnBookBtn;
+
+	private ObservableList<CheckoutEntry> entryList;
 
 	private Main main;
 	private Stage checkoutEntryStage;
@@ -103,6 +114,7 @@ public class PublicationCheckoutController {
 //				showPublicationCopyDetails(newValue);
 //			}
 //		});
+		this.checkBookBtn.setDisable(true);
 	}
 
 	public void setMain(Main main, int memberId){
@@ -152,6 +164,9 @@ public class PublicationCheckoutController {
 				isFineLabel.setText("false");
 			}
 			finePaidLabel.setText(entry.getFinePaid() + "");
+			if(entry.getReturnDate() == null){
+				this.returnBookBtn.setDisable(false);
+			}
 		}else{
 			bookIdLabel.setText("");
 			isbnLabel.setText("");
@@ -161,10 +176,68 @@ public class PublicationCheckoutController {
 			returnDateLabel.setText("");
 			isFineLabel.setText("");
 			finePaidLabel.setText("");
+			this.returnBookBtn.setDisable(true);
 		}
 	}
 
 	public void setCheckoutStage(Stage checkoutEntryStage){
 		this.checkoutEntryStage = checkoutEntryStage;
+	}
+
+	@FXML
+	private void handleSearch(){
+		this.checkBookBtn.setDisable(true);
+		String keyword = this.searchField.getText().trim();
+		Alert alert = new Alert(AlertType.ERROR);
+		int memberId = 0;
+		try {
+			memberId = Integer.parseInt(keyword);
+		}catch (NumberFormatException e){
+
+			alert.setContentText("Member id must be numeric.");
+			alert.showAndWait();
+			return;
+		}
+
+		CheckoutRecordDao checkout = new CheckoutRecordDao();
+		CheckoutRecord record =  checkout.getCheckoutRecordFromPid(memberId);
+		if(record == null){
+
+			alert.setContentText("No member with this id exists.");
+			alert.showAndWait();
+			return;
+		}
+		this.entryList = FXCollections.observableList(record.getEnties());
+		this.entries.setItems(this.entryList);
+		this.checkBookBtn.setDisable(false);
+	}
+
+	@FXML
+	private void handleCheckBook(){
+		Utils.gotoNextScene(PublicationAvailabilityCheckController.class, "PublicationAvailabilityCheck.fxml", new Utils.ISceneControllerSetting() {
+			@Override
+			public BaseController prepareForController(FXMLLoader fxmlLoader) {
+				PublicationAvailabilityCheckController controller = fxmlLoader.getController();
+				String idStr =  searchField.getText();
+				int memberId = 0;
+				try {
+					memberId = Integer.parseInt(idStr);
+				}catch (NumberFormatException e){
+				}
+				controller.setMemberId(memberId);
+				return controller;
+			}
+		},null);
+	}
+
+	@FXML
+	private void handleReturnBook(){
+		CheckoutEntry checkoutEntry =  this.entries.getSelectionModel().getSelectedItem();
+		if(checkoutEntry.getReturnDate() == null){
+			checkoutEntry.setReturnDate(LocalDate.now());
+		}
+		this.showCheckoutEntryDetails(checkoutEntry);
+		this.returnBookBtn.setDisable(true);
+
 	}
 }

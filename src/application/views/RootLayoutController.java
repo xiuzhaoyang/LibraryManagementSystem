@@ -24,7 +24,7 @@ import java.io.IOException;
 public class RootLayoutController {
 
     private String MEMBER_OVERVIEW = "MemberOverview.fxml";
-    private String BOOK_CHECKOUT = "BookCheckout.fxml";
+    private String PUBLICATION_CHECKOUT = "PublicationCheckout.fxml";
     private String ALL_PUBLICATION = "BookOverview.fxml";
 
     @FXML
@@ -105,23 +105,23 @@ public class RootLayoutController {
         checkoutBookItem.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showContentView(BOOK_CHECKOUT);
+                showContentView(PUBLICATION_CHECKOUT);
             }
         });
 
-        MenuItem recordItem = new MenuItem("checkout record");
-        recordItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.print("checkout record");
-            }
-        });
+//        MenuItem recordItem = new MenuItem("checkout record");
+//        recordItem.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                System.out.print("checkout record");
+//            }
+//        });
 
         ObservableList<MenuItem> itemList = checkoutMenu.getItems();
         itemList.add(checkoutBookItem);
-        itemList.add(recordItem);
+//        itemList.add(recordItem);
         menuList.add(checkoutMenu);
-        showContentView(BOOK_CHECKOUT);
+        showContentView(PUBLICATION_CHECKOUT);
     }
 
 

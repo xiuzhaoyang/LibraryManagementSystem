@@ -78,10 +78,6 @@ public class Publication implements Serializable{
 		this.allowedBorrowDays = allowedBorrowDays;
 	}
 
-	public final List<PublicationCopy> getpublicationCopies() {
-		return publicationCopies;
-	}
-
 	public final void setPublicationCopies(List<PublicationCopy> publicationCopies) {
 		this.publicationCopies = publicationCopies;
 	}
@@ -146,4 +142,12 @@ public class Publication implements Serializable{
 		return  i;
 	}
 
+	public int getIntAllowBorrowDays(){
+		if(this.allowedBorrowDays == AllowedBorrowDays.SEVEN_DAYS){
+			return  7;
+		}else  if(this.allowedBorrowDays == AllowedBorrowDays.TWENTY_ONE_DAYS){
+			return 20;
+		}
+		return 0;
+	}
 }

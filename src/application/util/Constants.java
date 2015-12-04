@@ -98,7 +98,7 @@ public class Constants {
 	
 	public static CheckoutRecord getCheckoutRecord(){
 		List<CheckoutEntry> enties2 = new ArrayList<>();
-		CheckoutEntry ckEntry4 = new CheckoutEntry(4, null, LocalDate.of(2015, 5, 10), LocalDate.of(2015, 6, 4), null, false, 0.0f);
+		CheckoutEntry ckEntry4 = new CheckoutEntry(4, null, LocalDate.of(2015, 5, 10), null, null, false, 0.0f);
 		CheckoutEntry ckEntry5 = new CheckoutEntry(5, null, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), null, false, 0.0f);
 		CheckoutEntry ckEntry6 = new CheckoutEntry(6, null, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), null, false, 0.0f);
 		enties2.add(ckEntry4);

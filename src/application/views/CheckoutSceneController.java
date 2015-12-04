@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import application.Dao.CheckoutRecordDao;
-import application.models.CheckoutEntry;
-import application.models.CheckoutRecord;
-import application.models.Person;
-import application.models.Publication;
+import application.models.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -48,6 +45,12 @@ public class CheckoutSceneController extends BaseController{
 	
 	@FXML
 	private Button ckBt;
+
+	@FXML
+	private int memberId;
+
+	@FXML
+	private PublicationCopy publicationCopy;
 	
 	
 	@FXML
@@ -88,6 +91,14 @@ public class CheckoutSceneController extends BaseController{
 			}
 		});
 	}
+
+	public void setPublicationCopy(PublicationCopy publicationCopy) {
+		this.publicationCopy = publicationCopy;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
 	
 	public void insertCheckRecord(){
 		CheckoutRecordDao cd = new CheckoutRecordDao();
@@ -101,8 +112,11 @@ public class CheckoutSceneController extends BaseController{
 		
 		List<CheckoutEntry> ces = cr.getEnties();
 		CheckoutEntry ce = new CheckoutEntry();
-		ce.seteId(ces.size() + 1);
-
+		if(ces.size() == 0){
+			ce.seteId(1);
+		}else{
+			ce.seteId(ces.get(ces.size() - 1).geteId() + 1);
+		}
 		ce.setpId(publication.getpId());
 
 		ce.setCheckoutDate(LocalDate.now());

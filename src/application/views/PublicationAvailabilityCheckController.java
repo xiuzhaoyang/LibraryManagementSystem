@@ -1,26 +1,28 @@
 package application.views;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import application.Main;
+import application.Dao.PersonDao;
 import application.Dao.PublicationDao;
+import application.Main;
 import application.models.Author;
+import application.models.Person;
 import application.models.Publication;
 import application.models.PublicationCopy;
+import application.util.Utils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public class PublicationAvailabilityCheckController {
+import java.util.List;
+
+
+public class PublicationAvailabilityCheckController extends BaseController {
 	@FXML
 	private TableView<PublicationCopy> tablePublicationCopies;
 
@@ -45,6 +47,18 @@ public class PublicationAvailabilityCheckController {
 	@FXML
 	private Label availabilityLabel;
 
+	@FXML
+	private TextField ISBNField;
+
+	@FXML
+	private Button createCheckoutBtn;
+
+	private Publication publication;
+	private ObservableList<PublicationCopy> dataList;
+
+
+	private int memberId;
+
 	private Main main;
 
 	private List<PublicationCopy> publicationCopies;
@@ -59,7 +73,7 @@ public class PublicationAvailabilityCheckController {
 		publicationCopyColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<PublicationCopy, String>, ObservableValue<String>>() {
 					@Override
-					public ObservableValue<String> call(CellDataFeatures<PublicationCopy, String> param) {
+					public ObservableValue<String> call(TableColumn.CellDataFeatures<PublicationCopy, String> param) {
 						return new SimpleStringProperty(param.getValue().getPcId());
 					}
 				});
@@ -72,6 +86,7 @@ public class PublicationAvailabilityCheckController {
 					public void changed(ObservableValue<? extends PublicationCopy> observable, PublicationCopy oldValue,
 							PublicationCopy newValue) {
 						showPublicationCopyDetails(newValue);
+						createCheckoutBtn.setDisable(false);
 					}
 				});
 
@@ -144,23 +159,12 @@ public class PublicationAvailabilityCheckController {
 		if (publicationCopy != null) {
 			publicationIdLabel.setText(publicationCopy.getpId() + "");
 			
-			//TODO  to load publication
-			Publication pb  =  null;
-			isbnLabel.setText(pb.getISBN());
-			titleLabel.setText(pb.getTitle());
+			isbnLabel.setText(this.publication.getISBN());
+			titleLabel.setText(this.publication.getTitle());
+			authorsLabel.setText(this.publication.getAuthorString());
 
-			List<Author> authors = pb.getAuthors();
-			StringBuilder sb = new StringBuilder();
-			for (Author a : authors) {
-				sb.append(a.getFirstName());
-				sb.append(" ");
-				sb.append(a.getLastName());
-				sb.append(",");
-			}
-			sb.deleteCharAt(sb.length() - 1);
-			authorsLabel.setText(sb.toString());
 
-			allowedBorrowDaysLabel.setText(pb.getAllowedBorrowDays() + "");
+			allowedBorrowDaysLabel.setText(String.valueOf(this.publication.getIntAllowBorrowDays()));
 
 			if (publicationCopy.isAvailable()) {
 				availabilityLabel.setText("true");
@@ -186,7 +190,7 @@ public class PublicationAvailabilityCheckController {
 
 		for (Publication p : publications) {
 			if (p.getISBN().equals(isbn)) {
-				publicationCopies = p.getpublicationCopies();
+				publicationCopies = p.getPublicationCopies();
 				break;
 			}
 		}
@@ -196,5 +200,49 @@ public class PublicationAvailabilityCheckController {
 
 	public void setPublicationCopyStage(Stage publicationCopyStage) {
 		this.publicationCopyStage = publicationCopyStage;
+	}
+
+	public void setMemberId(int memberId){
+		this.memberId = memberId;
+	}
+
+	@FXML
+	private void handleSearch(){
+		String ISBN = this.ISBNField.getText().trim();
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		if(ISBN == null || ISBN.length() == 0){
+			alert.setContentText("Please input ISBN number.");
+			alert.showAndWait();
+			return;
+		}
+
+		PublicationDao publicationDao = new PublicationDao();
+		Publication publication =  publicationDao.getPublicationByISBN(ISBN);
+		if(publication == null){
+			alert.setContentText("No book with this ISBN exists.");
+			alert.showAndWait();
+			return;
+		}
+
+		this.publication = publication;
+		this.dataList = FXCollections.observableList(publication.getPublicationCopies());
+		this.tablePublicationCopies.setItems(this.dataList);
+	}
+
+	@FXML
+	private void handleCreateCheckoutRecord(){
+		Utils.gotoNextScene(CheckoutSceneController.class, "CheckoutScene.fxml", new Utils.ISceneControllerSetting() {
+			@Override
+			public BaseController prepareForController(FXMLLoader fxmlLoader) {
+				CheckoutSceneController controller = fxmlLoader.getController();
+				PersonDao personDao = new PersonDao();
+				Person person = personDao.loadPersonById(memberId);
+				controller.setPerson(person);
+				controller.setPublication(publication);
+				PublicationCopy copy = tablePublicationCopies.getSelectionModel().getSelectedItem();
+				controller.setPublicationCopy(copy);
+				return controller;
+			}
+		},this.curStage);
 	}
 }
