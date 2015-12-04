@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class CheckoutEntry  implements Serializable{
 	private  int eId; //entry id
-	private int pId;
+	private int pId; //publication Id
 	private  LocalDate checkoutDate; // borrow date
 	private  LocalDate dueDate; // date should give back
 	private 	LocalDate returnDate; // actual give back date
@@ -13,11 +13,12 @@ public class CheckoutEntry  implements Serializable{
 	private float finePaid;
 
 	public CheckoutEntry(){
-		this(0, null, null, null, null, false, 0.0f);
+		this(0, 0, null, null, null, false, 0.0f);
 	}
 
-	public CheckoutEntry(int eId, Publication publication, LocalDate checkoutDate, LocalDate dueDate, LocalDate returnDate, boolean isFine, float finePaid){
+	public CheckoutEntry(int eId, int pid, LocalDate checkoutDate, LocalDate dueDate, LocalDate returnDate, boolean isFine, float finePaid){
 		this.eId = eId;
+		this.pId = pid;
 		this.checkoutDate = checkoutDate;
 		this.dueDate = dueDate;
 		this.returnDate = returnDate;

@@ -19,7 +19,6 @@ public class DaoTest  {
 		d.saveObjects(ps);
 		
 		List<Publication> pbList = Constants.getPublications();
-		
 		PublicationDao pbd = new PublicationDao();
 		pbd.saveObjects(pbList);
 		

@@ -142,12 +142,17 @@ public class Publication implements Serializable{
 		return  i;
 	}
 
-	public int getIntAllowBorrowDays(){
-		if(this.allowedBorrowDays == AllowedBorrowDays.SEVEN_DAYS){
-			return  7;
-		}else  if(this.allowedBorrowDays == AllowedBorrowDays.TWENTY_ONE_DAYS){
+	public int getIntAllowBorrowDays() {
+		if (this.allowedBorrowDays == AllowedBorrowDays.SEVEN_DAYS) {
+			return 7;
+		} else if (this.allowedBorrowDays == AllowedBorrowDays.TWENTY_ONE_DAYS) {
 			return 20;
 		}
 		return 0;
+	}
+
+	@Override
+	public String toString() {
+		return "book id " + pId;
 	}
 }
