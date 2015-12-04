@@ -51,13 +51,14 @@ public class Utils {
 	
 	public static void printCheckoutRecordAccordingMember(Person p){
 		
+		System.out.println("");
 		System.out.println("Member Name: " + p.getFirstName() + " " + p.getLastName());
 		System.out.println("Member ID  : " + p.getPid());
-		System.out.println("");
+//		System.out.println("");
 		System.out.println("---------------------------------------------------------");
-		System.out.println("");
+//		System.out.println("");
 		
-		System.out.println("Entry Id    Book    CheckoutDate    DueDate     ReturnDate");
+		System.out.println("EntryId    Book    CheckoutDate    DueDate     ReturnDate");
 		
 		CheckoutRecordDao crd = new CheckoutRecordDao();
 		CheckoutRecord cr = crd.getCheckoutRecordFromPid(p.getPid());
@@ -69,8 +70,10 @@ public class Utils {
 		
 		PublicationDao pb = new PublicationDao();
 		for(CheckoutEntry ce : cr.getEnties()){
+			
 			Publication pBook = pb.getPublicationByPid(ce.getpId());
-			System.out.println(ce.geteId() + "    " +pBook.getTitle() + "     " + ce.getCheckoutDate() + "    " + ce.getDueDate() + "     " + (ce.getReturnDate() == null ? "NOT RETURN " :   ce.getReturnDate()) );
+			
+			System.out.println(ce.geteId() + "          " +pBook.getTitle() + "     " + ce.getCheckoutDate() + "    " + ce.getDueDate() + "     " + (ce.getReturnDate() == null ? "NOT RETURN " :   ce.getReturnDate()) );
 		}
 		
 	}

@@ -146,4 +146,9 @@ public class Publication implements Serializable{
 		return  i;
 	}
 
+	@Override
+	public String toString() {
+	
+		return "book id " + pId;
+	}
 }

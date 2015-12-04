@@ -69,23 +69,37 @@ public class ListController {
             public void handle(MouseEvent event) {
             	
             	
-            	Utils.gotoNextScene(CheckoutSceneController.class, "CheckoutScene.fxml", new ISceneControllerSetting() {
-					
-					@Override
-					public BaseController prepareForController(FXMLLoader fxmlLoader) {
-						CheckoutSceneController controller = fxmlLoader.<CheckoutSceneController>getController();
-						
-						PersonDao dao = new PersonDao();
-						Person p = dao.loadObjs().get(0);
-						
-						controller.setPerson(p);
-//						Book b = new Book(111, "Western Traveling", "3j3838d73j28w8n", null,AllowedBorrowDays.SEVEN_DAYS	, null);
-                        Publication publiction = new Publication(1, LocalDate.now(),"book1","00001",new ArrayList<Author>(),AllowedBorrowDays.SEVEN_DAYS,new Book());
-						controller.setPublication(publiction);
-						return controller;
-					}
-				}, null);
+            PersonDao pd = new PersonDao();
+            List<Person> ps = pd.loadALlPersons();
+            Person p = null;
+            for(Person r : ps){
+            	if(r.getPid() == 3){
+            		p = r;
+            		break;
+            	}
+            }
             	
+            if(p != null){
+            	Utils.printCheckoutRecordAccordingMember(p);
+            }
+            
+//            	Utils.gotoNextScene(CheckoutSceneController.class, "CheckoutScene.fxml", new ISceneControllerSetting() {
+//					
+//					@Override
+//					public BaseController prepareForController(FXMLLoader fxmlLoader) {
+//						CheckoutSceneController controller = fxmlLoader.<CheckoutSceneController>getController();
+//						
+//						PersonDao dao = new PersonDao();
+//						Person p = dao.loadObjs().get(0);
+//						
+//						controller.setPerson(p);
+////						Book b = new Book(111, "Western Traveling", "3j3838d73j28w8n", null,AllowedBorrowDays.SEVEN_DAYS	, null);
+//                        Publication publiction = new Publication(1, LocalDate.now(),"book1","00001",new ArrayList<Author>(),AllowedBorrowDays.SEVEN_DAYS,new Book());
+//						controller.setPublication(publiction);
+//						return controller;
+//					}
+//				}, null);
+//            	
             	
             }
         });

@@ -10,7 +10,6 @@ public class AbstractDao <T>{
 		
 	}
 	public List<T> loadObjs(){
-		System.out.print(" " + TABLE_KEY);
 		return Db.readObjects(TABLE_KEY);
 		
 	}

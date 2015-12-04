@@ -74,6 +74,15 @@ public class Constants {
 	}
 
 	public static List<Publication> getPublications(){
+		
+		Address addr1 = new Address("1st", "New York", "NY", "12345");
+		List<Author> authorList1 = new ArrayList<Author>();
+		Author author = new Author(1, "Fei", "Zhang", addr1, "PhD", "novelist", "CHN");
+		authorList1.add(author);
+		Publication bk1 = new Publication(1, LocalDate.of(2011, 11, 2),"C#", "123456789", authorList1, AllowedBorrowDays.TWENTY_ONE_DAYS, new Book());
+		Publication bk2 = new Publication(2, LocalDate.of(2013, 5, 2), "Java", "789123456", authorList1, AllowedBorrowDays.TWENTY_ONE_DAYS, new Book());
+		Publication bk3 = new Publication(3, LocalDate.of(2009, 7, 2), "C++", "456123789", authorList1, AllowedBorrowDays.TWENTY_ONE_DAYS, new Book());
+
 		List<Publication> publicationList = new ArrayList<Publication>();
 
 		Address addr2 = new Address("1st", "New York", "NY", "12345");
@@ -88,6 +97,10 @@ public class Constants {
 		bk4.addCopy(LocalDate.of(2012, 3, 12), bk4);
 		bk4.addCopy(LocalDate.of(2013, 4, 1), bk4);
 		bk4.addCopy(LocalDate.of(2015, 8, 8), bk4);
+		
+		publicationList.add(bk1);
+		publicationList.add(bk2);
+		publicationList.add(bk3);
 		publicationList.add(bk4);
 		publicationList.add(bk5);
 		publicationList.add(bk6);
@@ -98,9 +111,9 @@ public class Constants {
 	
 	public static CheckoutRecord getCheckoutRecord(){
 		List<CheckoutEntry> enties2 = new ArrayList<>();
-		CheckoutEntry ckEntry4 = new CheckoutEntry(4, null, LocalDate.of(2015, 5, 10), LocalDate.of(2015, 6, 4), null, false, 0.0f);
-		CheckoutEntry ckEntry5 = new CheckoutEntry(5, null, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), null, false, 0.0f);
-		CheckoutEntry ckEntry6 = new CheckoutEntry(6, null, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), null, false, 0.0f);
+		CheckoutEntry ckEntry4 = new CheckoutEntry(4, 4, LocalDate.of(2015, 5, 10), LocalDate.of(2015, 6, 4), null, false, 0.0f);
+		CheckoutEntry ckEntry5 = new CheckoutEntry(5, 5, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), null, false, 0.0f);
+		CheckoutEntry ckEntry6 = new CheckoutEntry(6, 6, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), null, false, 0.0f);
 		enties2.add(ckEntry4);
 		enties2.add(ckEntry5);
 		enties2.add(ckEntry6);
