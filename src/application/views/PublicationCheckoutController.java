@@ -4,12 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 
 import application.Dao.PersonDao;
+import application.Dao.PublicationDao;
 import application.Main;
 import application.Dao.CheckoutRecordDao;
-import application.models.CheckoutEntry;
-import application.models.CheckoutRecord;
-import application.models.Person;
-import application.models.PublicationCopy;
+import application.models.*;
 import application.util.DateHelper;
 import application.util.Utils;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -158,9 +156,12 @@ public class PublicationCheckoutController {
 		if(entry != null){
 
 			bookIdLabel.setText(entry.getpId() + "");
-	//TODO:
-//			isbnLabel.setText(entry.getPublication().getISBN());
-//			titleLabel.setText(entry.getPublication().getTitle());
+
+			PublicationDao publicationDao = new PublicationDao();
+			Publication publication = publicationDao.getPublicationByPid(entry.getpId());
+
+			isbnLabel.setText(publication.getISBN());
+			titleLabel.setText(publication.getTitle());
 
 			checkoutDateLabel.setText(DateHelper.format(entry.getCheckoutDate()));
 			dueDateLabel.setText(DateHelper.format(entry.getDueDate()));

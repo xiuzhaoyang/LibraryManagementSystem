@@ -78,7 +78,8 @@ public class MemberEditDialogController extends BaseController  {
 		cityField.setText(member.getAddress().getCity());
 		stateField.setText(member.getAddress().getState());
 		zipCodeField.setText(member.getAddress().getZip());
-		phoneField.setText(member.getPhoneNum());
+		phoneField.setText(member.getPhoneNum() == null ? "" : member.getPhoneNum());
+		phoneField.setPromptText("123456789 9 digit numbers");
 		personRolesField.setText(member.getPersonRolesToString());
 	}
 
@@ -157,6 +158,25 @@ public class MemberEditDialogController extends BaseController  {
 				Integer.parseInt(zipCodeField.getText());
 			}catch(NumberFormatException e){
 				sb.append("Please input valid digit number.\n");
+			}
+
+			////////////////////////////////////////////
+			if(zipCodeField.getText().length() != 5){
+				sb.append("Please input 5 digit number in zip code field.\n");
+			}
+		}
+
+		if(isNullOrEmpty(phoneField.getText())){
+			sb.append("Phone number input in not valid.\n");
+		}else{
+			try{
+				Integer.parseInt(phoneField.getText());
+			}catch(NumberFormatException e){
+				sb.append("Please input valid digit number in phone field.\n");
+			}
+
+			if(phoneField.getText().length() != 9){
+				sb.append("Please input 9 digit number in phone field.\n");
 			}
 		}
 

@@ -12,10 +12,9 @@ public class Constants {
 		List<Person> members = new ArrayList<>();
 
 		List<PersonRole> list1 = new ArrayList<PersonRole>();
-		list1.add(new LibraryMember());
+		list1.add(new Librarian());
 
 		List<PersonRole> list2 = new ArrayList<PersonRole>();
-		list2.add(new LibraryMember());
 		list2.add(new Administrator());
 
 		List<PersonRole> list3 = new ArrayList<PersonRole>();
@@ -46,12 +45,12 @@ public class Constants {
 		//Hard code some data
 		//Person(int pid, String firstName, String lastName, String street, String city, String state, String zip, String phoneNum, LocalDate dob)
 		Person p = new Person(1, "Tim", "TM", "1st ST", "New York", "NY", "11231", "123456789", LocalDate.of(1980, 5, 20), list1);
-		p.setUserName("lin");
+		p.setUserName("100001");
 		p.setPwd("lin");
 		members.add(p);
 
 		p = new Person(2, "Jessica", "JS", "12st ST", "Fairfield", "IA", "55231", "213456789", LocalDate.of(1983, 9, 12), list2);
-		p.setUserName("cui");
+		p.setUserName("100002");
 		p.setPwd("cui");
 		members.add(p);
 
