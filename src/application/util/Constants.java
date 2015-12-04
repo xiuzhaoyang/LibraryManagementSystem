@@ -56,7 +56,7 @@ public class Constants {
 		members.add(p);
 
 		p = new Person(3, "Monica", "MN", "11st ST", "Washington", "DC", "20231", "123547689", LocalDate.of(1988, 11, 5), list3);
-		p.setUserName("su");
+		p.setUserName("100000");
 		p.setPwd("su");
 		members.add(p);
 
@@ -92,9 +92,9 @@ public class Constants {
 		Publication bk4 = new Publication(4, LocalDate.of(2012, 10, 2), "C#2", "923456789", authorList2, AllowedBorrowDays.TWENTY_ONE_DAYS, new Book());
 		Publication bk5 = new Publication(5, LocalDate.of(2013, 8, 5), "Java2", "789123456", authorList2, AllowedBorrowDays.TWENTY_ONE_DAYS, new Book());
 		Publication bk6 = new Publication(6, LocalDate.of(2014, 9, 12), "C++2", "456123789", authorList2, AllowedBorrowDays.TWENTY_ONE_DAYS, new Book());
-		bk4.addCopy(LocalDate.of(2012, 3, 12), bk4);
-		bk4.addCopy(LocalDate.of(2013, 4, 1), bk4);
-		bk4.addCopy(LocalDate.of(2015, 8, 8), bk4);
+		bk4.addCopy(LocalDate.of(2012, 3, 12));
+		bk4.addCopy(LocalDate.of(2013, 4, 1));
+		bk4.addCopy(LocalDate.of(2015, 8, 8));
 		
 		publicationList.add(bk1);
 		publicationList.add(bk2);
@@ -109,9 +109,9 @@ public class Constants {
 	
 	public static CheckoutRecord getCheckoutRecord(){
 		List<CheckoutEntry> enties2 = new ArrayList<>();
-		CheckoutEntry ckEntry4 = new CheckoutEntry(4, 0, LocalDate.of(2015, 5, 10), LocalDate.of(2015, 5, 25), LocalDate.of(2015, 5, 24), false, 0.0f);
-		CheckoutEntry ckEntry5 = new CheckoutEntry(5, 0, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), LocalDate.of(2015, 5, 22), false, 0.0f);
-		CheckoutEntry ckEntry6 = new CheckoutEntry(6, 0, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), LocalDate.of(2015, 5, 20), false, 0.0f);
+		CheckoutEntry ckEntry4 = new CheckoutEntry(4, 5, LocalDate.of(2015, 5, 10), LocalDate.of(2015, 5, 25), LocalDate.of(2015, 5, 24), false, 0.0f);
+		CheckoutEntry ckEntry5 = new CheckoutEntry(5, 5, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), LocalDate.of(2015, 5, 22), false, 0.0f);
+		CheckoutEntry ckEntry6 = new CheckoutEntry(6, 5, LocalDate.of(2015, 5, 1), LocalDate.of(2015, 5, 22), LocalDate.of(2015, 5, 20), false, 0.0f);
 
 		enties2.add(ckEntry4);
 		enties2.add(ckEntry5);

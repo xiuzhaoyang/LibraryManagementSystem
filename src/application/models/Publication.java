@@ -90,7 +90,7 @@ public class Publication implements Serializable{
 		this.publicationType = publicationType;
 	}
 
-	public void addCopy(LocalDate addDate, Publication publication){
+	public void addCopy(LocalDate addDate){
 		pcAmount++;
 		String nextPcId = this.pId + "-" + pcAmount;
 		PublicationCopy cp = new PublicationCopy(pId, nextPcId, addDate, true, this);
@@ -111,7 +111,7 @@ public class Publication implements Serializable{
 		this.allowedBorrowDays = allowedBorrowDays;
 //		this.publicationCopies = publicationCopies;
 		this.publicationType = publicationType;
-		this.addCopy(addDate, this);
+		this.addCopy(addDate);
 	}
 
 

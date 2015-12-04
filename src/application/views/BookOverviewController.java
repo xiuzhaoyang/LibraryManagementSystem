@@ -2,24 +2,29 @@ package application.views;
 
 import application.Dao.PublicationDao;
 import application.models.AllowedBorrowDays;
+import application.models.IEditPerson;
+import application.models.IEditPublication;
 import application.models.Publication;
 import application.util.Constants;
+import application.util.Utils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.util.Callback;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Created by su on 12/3/15.
  */
-public class BookOverviewController extends BaseController {
+public class BookOverviewController extends BaseController implements IEditPublication {
     @FXML
     private TextField ISBNSearchField;
 
@@ -64,6 +69,11 @@ public class BookOverviewController extends BaseController {
 
     @FXML
     private Label availableLabel;
+
+    @FXML
+    private Button addCopyBtn;
+
+    private Publication publication;
 
 
     @FXML
@@ -114,6 +124,9 @@ public class BookOverviewController extends BaseController {
         this.typeLabel.setText(publication.getPublicationType().getType());
         this.countLabel.setText(String.valueOf(publication.getCopyCount()));
         this.availableLabel.setText(String.valueOf(publication.getAvailableCount()));
+        this.publication = publication;
+        this.addCopyBtn.setDisable(false);
+
     }
 
 
@@ -152,7 +165,7 @@ public class BookOverviewController extends BaseController {
         ObservableList<Publication> tmpList = FXCollections.observableArrayList();
         for(Publication publication : this.publicationList){
             String title = publication.getTitle();
-            if(title.equals(keyword)){
+            if(title.toLowerCase().equals(keyword.toLowerCase())){
                 tmpList.add(publication);
             }
         }
@@ -169,8 +182,14 @@ public class BookOverviewController extends BaseController {
 
     @FXML
     private void handleAddPublication(){
-
-
+        Utils.gotoNextScene(BookEditDialogController.class, "BookEditDialog.fxml", new Utils.ISceneControllerSetting() {
+            @Override
+            public BaseController prepareForController(FXMLLoader fxmlLoader) {
+                BookEditDialogController controller = fxmlLoader.getController();
+                controller.setIe(BookOverviewController.this);
+                return controller;
+            }
+        },null);
     }
 
     @FXML
@@ -202,5 +221,22 @@ public class BookOverviewController extends BaseController {
                 errorAlert.showAndWait();
             }
         }
+    }
+
+    @Override
+    public void editPublication(Publication p, boolean isNew) {
+        if(isNew){
+            Publication publication = this.publicationList.get(this.publicationList.size() - 1);
+            p.setpId(publication.getpId() + 1);
+            this.publicationList.addAll(p);
+            this.tableView.setItems(this.publicationList);
+        }
+    }
+
+    @FXML
+    private void handleAddCopy(){
+        this.publication.addCopy(LocalDate.now());
+        this.tableView.setItems(this.publicationList);
+        showDetail(this.publication);
     }
 }

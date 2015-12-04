@@ -78,4 +78,10 @@ public class Author  implements Serializable{
 	}
 	
 	private static final long serialVersionUID = 104L;
+
+
+	@Override
+	public String toString(){
+		return this.firstName +" " + this.lastName;
+	}
 }

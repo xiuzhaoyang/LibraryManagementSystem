@@ -14,4 +14,9 @@ public class Periodical  implements PublicationType, Serializable {
 		return "Periodical";
 	}
 
+	@Override
+	public String toString(){
+		return "Periodical";
+	}
+
 }

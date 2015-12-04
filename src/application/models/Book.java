@@ -11,4 +11,10 @@ public class Book implements PublicationType, Serializable{
 	public String getType() {
 		return "Book";
 	}
+
+	@Override
+	public String toString(){
+		return "Book";
+	}
+
 }

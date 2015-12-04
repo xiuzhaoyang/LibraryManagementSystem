@@ -29,10 +29,10 @@
                                     <padding>
                                         <Insets left="10.0" />
                                     </padding></Label>
-                                <TextField onAction="#handleSearchByISBN" prefHeight="31.0" prefWidth="94.0" GridPane.columnIndex="1" />
+                                <TextField fx:id="ISBNSearchField" onAction="#handleSearchByISBN" prefHeight="31.0" prefWidth="94.0" GridPane.columnIndex="1" />
                                 <Button mnemonicParsing="false" onAction="#handleSearchByISBN" text="Search" GridPane.columnIndex="2" />
                                 <Button mnemonicParsing="false" onAction="#handleSearchByName" text="Search" GridPane.columnIndex="5" />
-                                <TextField onAction="#handleSearchByName" prefHeight="31.0" prefWidth="95.0" GridPane.columnIndex="4" />
+                                <TextField fx:id="nameSearchField" onAction="#handleSearchByName" prefHeight="31.0" prefWidth="95.0" GridPane.columnIndex="4" />
                                 <Label alignment="CENTER_RIGHT" text="Name" GridPane.columnIndex="3">
                                     <padding>
                                         <Insets left="50.0" />
@@ -100,8 +100,8 @@
                                             </children>
                                         </GridPane>
                                         <Label layoutX="13.0" layoutY="14.0" text="Person Details" />
-                                        <Button layoutX="161.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleAddPublication" text="New..." />
-                                        <Button layoutX="239.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleEditPublication" text="Edit..." />
+                                        <Button layoutX="149.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleAddPublication" text="New" />
+                                        <Button fx:id="addCopyBtn" layoutX="207.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleAddCopy" text="Add Copy" />
                                         <Button layoutX="316.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleDeletePublication" text="Delete" />
                                     </children>
                                 </AnchorPane>

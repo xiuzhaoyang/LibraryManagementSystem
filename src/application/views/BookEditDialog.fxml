@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.views.BookEditDialogController">
+   <children>
+      <Label layoutX="57.0" layoutY="48.0" text="title" />
+      <TextField fx:id="titleField" layoutX="97.0" layoutY="43.0" prefHeight="27.0" prefWidth="167.0" />
+      <TextField fx:id="ISBNField" layoutX="96.0" layoutY="79.0" />
+      <Label layoutX="54.0" layoutY="84.0" text="ISBN" />
+      <Label layoutX="23.0" layoutY="119.0" />
+      <TextField fx:id="countField" layoutX="97.0" layoutY="114.0" />
+      <Label layoutX="25.0" layoutY="156.0" />
+      <Label layoutX="16.0" layoutY="156.0" text="Borrow days" />
+      <Label layoutX="51.0" layoutY="119.0" text="count" />
+      <ComboBox fx:id="authorComboBox" layoutX="387.0" layoutY="43.0" prefWidth="150.0" promptText="sdfsdf" />
+      <Label layoutX="337.0" layoutY="48.0" text="author" />
+      <Label layoutX="313.0" layoutY="84.0" text="First Name" />
+      <Label layoutX="315.0" layoutY="119.0" text="Last Name" />
+      <Label layoutX="341.0" layoutY="156.0" text="Street" />
+      <Label layoutX="356.0" layoutY="231.0" text="Zip" />
+      <Label layoutX="350.0" layoutY="271.0" text="State" />
+      <Label layoutX="316.0" layoutY="308.0" text="Credential" />
+      <Label layoutX="313.0" layoutY="349.0" text="Description" />
+      <Label layoutX="315.0" layoutY="391.0" text="Nationality" />
+      <TextField fx:id="firstNameField" disable="true" layoutX="387.0" layoutY="79.0" />
+      <TextField fx:id="lastNameField" disable="true" layoutX="387.0" layoutY="114.0" />
+      <TextField fx:id="streetField" disable="true" layoutX="388.0" layoutY="151.0" />
+      <TextField fx:id="zipField" disable="true" layoutX="389.0" layoutY="226.0" />
+      <TextField fx:id="stateField" disable="true" layoutX="392.0" layoutY="266.0" />
+      <TextField fx:id="credentialField" disable="true" layoutX="392.0" layoutY="308.0" />
+      <TextField fx:id="descriptionField" disable="true" layoutX="392.0" layoutY="344.0" />
+      <TextField fx:id="nationalityField" disable="true" layoutX="392.0" layoutY="382.0" />
+      <Button fx:id="okBtn" layoutX="362.0" layoutY="431.0" mnemonicParsing="false" onAction="#handleOkAction" prefHeight="27.0" prefWidth="60.0" text="OK" />
+      <Button fx:id="cancelBtn" layoutX="476.0" layoutY="431.0" mnemonicParsing="false" onAction="#handleCancelAction" text="Cancel" />
+      <ComboBox fx:id="dayComboBox" layoutX="97.0" layoutY="151.0" prefHeight="27.0" prefWidth="165.0" promptText="days" />
+      <Label layoutX="52.0" layoutY="195.0" text="type" />
+      <ComboBox fx:id="typeComboBox" layoutX="97.0" layoutY="190.0" prefHeight="27.0" prefWidth="165.0" />
+      <TextField fx:id="city" disable="true" layoutX="389.0" layoutY="190.0" />
+      <Label layoutX="350.0" layoutY="195.0" text="city" />
+   </children>
+</Pane>
