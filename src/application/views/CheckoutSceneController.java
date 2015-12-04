@@ -67,7 +67,6 @@ public class CheckoutSceneController extends BaseController{
 			@Override
 			public void handle(ActionEvent event) {
 				dueDate = datePicker.getValue();
-				System.out.println("Selected date: " + dueDate);
 			}
 		});
 		
@@ -131,7 +130,7 @@ public class CheckoutSceneController extends BaseController{
 	public void setPerson(Person p){
 		this.person = p;
 		
-		userIdLB.setText(person.getUserName());
+		userNameLB.setText(person.getFirstName() + " " + person.getLastName());
 		userIdLB.setText(String.valueOf(person.getPid()));
 	}
 	
@@ -139,7 +138,7 @@ public class CheckoutSceneController extends BaseController{
 		this.publication = b;
 		
 		bookLB.setText(publication.getTitle());
-		authorLB.setText(publication.getAuthors().toString());
+		authorLB.setText(publication.getAuthorString());
 		isbnLB.setText(publication.getISBN());
 	}
 }
