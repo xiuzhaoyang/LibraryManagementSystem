@@ -11,10 +11,11 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Label layoutX="35.0" layoutY="27.0" text="Member ID" />
-                  <TextField fx:id="searchField" layoutX="129.0" layoutY="22.0" onAction="#handleSearch" prefHeight="31.0" prefWidth="154.0" />
-                  <Button layoutX="293.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleSearch" text="Go" />
-                  <Button fx:id="checkBookBtn" disable="true" layoutX="406.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleCheckBook" text="CheckBookAvailability" />
+                  <Label layoutX="20.0" layoutY="29.0" text="Member ID" />
+                  <TextField fx:id="searchField" layoutX="102.0" layoutY="22.0" onAction="#handleSearch" prefHeight="31.0" prefWidth="154.0" />
+                  <Button layoutX="272.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleSearch" text="Go" />
+                  <Button fx:id="checkBookBtn" disable="true" layoutX="328.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleCheckBook" text="CheckBookAvailability" />
+                  <Button fx:id="consolePrintBtn" disable="true" layoutX="486.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleConsolePrint" text="console print " />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

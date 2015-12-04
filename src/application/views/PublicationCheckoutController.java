@@ -3,10 +3,12 @@ package application.views;
 import java.time.LocalDate;
 import java.util.List;
 
+import application.Dao.PersonDao;
 import application.Main;
 import application.Dao.CheckoutRecordDao;
 import application.models.CheckoutEntry;
 import application.models.CheckoutRecord;
+import application.models.Person;
 import application.models.PublicationCopy;
 import application.util.DateHelper;
 import application.util.Utils;
@@ -62,6 +64,11 @@ public class PublicationCheckoutController {
 
 	@FXML
 	private Button returnBookBtn;
+
+	@FXML
+	private Button consolePrintBtn;
+
+	private int memberId;
 
 	private ObservableList<CheckoutEntry> entryList;
 
@@ -187,6 +194,7 @@ public class PublicationCheckoutController {
 	@FXML
 	private void handleSearch(){
 		this.checkBookBtn.setDisable(true);
+		this.consolePrintBtn.setDisable(true);
 		String keyword = this.searchField.getText().trim();
 		Alert alert = new Alert(AlertType.ERROR);
 		int memberId = 0;
@@ -207,9 +215,11 @@ public class PublicationCheckoutController {
 			alert.showAndWait();
 			return;
 		}
+		this.memberId = memberId;
 		this.entryList = FXCollections.observableList(record.getEnties());
 		this.entries.setItems(this.entryList);
 		this.checkBookBtn.setDisable(false);
+		this.consolePrintBtn.setDisable(false);
 	}
 
 	@FXML
@@ -218,12 +228,6 @@ public class PublicationCheckoutController {
 			@Override
 			public BaseController prepareForController(FXMLLoader fxmlLoader) {
 				PublicationAvailabilityCheckController controller = fxmlLoader.getController();
-				String idStr =  searchField.getText();
-				int memberId = 0;
-				try {
-					memberId = Integer.parseInt(idStr);
-				}catch (NumberFormatException e){
-				}
 				controller.setMemberId(memberId);
 				return controller;
 			}
@@ -239,5 +243,14 @@ public class PublicationCheckoutController {
 		this.showCheckoutEntryDetails(checkoutEntry);
 		this.returnBookBtn.setDisable(true);
 
+	}
+
+	@FXML
+	private void handleConsolePrint(){
+		PersonDao personDao = new PersonDao();
+		Person person = personDao.loadPersonById(this.memberId);
+		if(person != null){
+			Utils.printCheckoutRecordAccordingMember(person);
+		}
 	}
 }
