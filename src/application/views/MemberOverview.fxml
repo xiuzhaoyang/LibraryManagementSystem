@@ -99,8 +99,8 @@
                                  </children>
                               </GridPane>
                               <Label layoutX="13.0" layoutY="14.0" text="Person Details" />
-                              <Button layoutX="161.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleCreateMember" text="New..." />
-                              <Button layoutX="239.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleEditMember" text="Edit..." />
+                              <Button layoutX="161.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleCreateMember" text="New" />
+                              <Button layoutX="239.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleEditMember" text="Edit" />
                               <Button layoutX="316.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleDeleteMember" text="Delete" />
                            </children>
                         </AnchorPane>
