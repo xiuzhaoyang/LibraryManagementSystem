@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="publications" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.views.PublicationAvailabilityCheckController">
    <children>
-      <Button fx:id="createCheckoutBtn" disable="true" layoutX="613.0" layoutY="547.0" mnemonicParsing="false" onAction="#handleCreateCheckoutRecord" text="Create checkout entry" />
+      <Button fx:id="createCheckoutBtn" disable="true" layoutX="613.0" layoutY="547.0" mnemonicParsing="false" onAction="#handleCreateCheckoutRecord" text="Go Checkout" />
       <SplitPane dividerPositions="0.29197994987468673" layoutX="260.0" layoutY="52.0" prefHeight="475.0" prefWidth="800.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
