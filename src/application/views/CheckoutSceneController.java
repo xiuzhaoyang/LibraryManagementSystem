@@ -103,7 +103,6 @@ public class CheckoutSceneController extends BaseController{
 		CheckoutRecordDao cd = new CheckoutRecordDao();
 		CheckoutRecord cr = cd.getCheckoutRecordFromPid(person.getPid());
 		
-//		System.out.println("loads rc " + cr);
 		if(cr == null){
 			cr = new CheckoutRecord();
 			cr.setmId(person.getPid());
@@ -122,7 +121,6 @@ public class CheckoutSceneController extends BaseController{
 				}
 			}
 			
-//			System.out.println("maxId " + maxId);
 			ce.seteId(maxId + 1);
 		}
 		
