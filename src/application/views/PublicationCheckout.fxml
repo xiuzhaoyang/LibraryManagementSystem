@@ -67,7 +67,7 @@
                                     <Label fx:id="finePaidLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                  </children>
                               </GridPane>
-                              <Button fx:id="returnBookBtn" disable="true" layoutX="330.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleReturnBook" text="Book Checkin" />
+                              <Button fx:id="returnBookBtn" disable="true" layoutX="330.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleReturnBook" text="Return Book" />
                            </children>
                         </AnchorPane>
                     </items>
