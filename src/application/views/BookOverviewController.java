@@ -98,9 +98,10 @@ public class BookOverviewController extends BaseController implements IEditPubli
             }
         });
 
-        PublicationDao pd = new PublicationDao();
-        List<Publication> list = pd.loadAllPublication();
-        this.publicationList = FXCollections.observableList(list);
+        publicationList.clear();
+        for (Publication p : list) {
+            publicationList.add(p);
+        }
         this.tableView.setItems(this.publicationList);
 
         this.tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Publication>() {
