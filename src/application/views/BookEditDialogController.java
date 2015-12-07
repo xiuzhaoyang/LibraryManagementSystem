@@ -23,6 +23,11 @@ import java.util.List;
  * Created by su on 12/3/15.
  */
 public class BookEditDialogController extends BaseController {
+
+    private String EMPTY_HINT = "%s must be not empty.";
+    private String ZIP_LENGTH_HINT = "Zip code must be 5 digits";
+
+
     @FXML
     private TextField titleField;
 
@@ -180,6 +185,31 @@ public class BookEditDialogController extends BaseController {
         String dayStr = this.dayComboBox.getValue();
         PublicationType type = this.typeComboBox.getValue();
         Author author = this.authorComboBox.getValue();
+
+        String contentStr = "";
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if(title.length() == 0){
+            alert.setContentText(String.format(EMPTY_HINT,"Title"));
+            alert.showAndWait();
+            return;
+        }
+
+        if(ISBN.length() == 0){
+            alert.setContentText(String.format(EMPTY_HINT,"ISBN"));
+            alert.showAndWait();
+            return;
+        }
+
+        int countInt = 0;
+        try{
+            countInt = Integer.parseInt(countStr);
+        }catch (NumberFormatException e){
+            alert.setContentText(String.format(EMPTY_HINT,"Count"));
+            alert.showAndWait();
+            return;
+        }
+
+
         if(author.getaId() == 0){
             String firstName = this.firstNameField.getText().trim();
             String lastName = this.lastNameField.getText().trim();
@@ -191,15 +221,78 @@ public class BookEditDialogController extends BaseController {
             String nationality = this.nationalityField.getText().trim();
             String city = this.city.getText().trim();
             Address address = new Address(street,city,state,zip);
+
+            if(firstName.length() == 0){
+                alert.setContentText(String.format(EMPTY_HINT,"First name"));
+                alert.showAndWait();
+                return;
+            }
+
+            if(lastName.length() == 0){
+                alert.setContentText(String.format(EMPTY_HINT,"Last name"));
+                alert.showAndWait();
+                return;
+            }
+
+            if(street.length() == 0){
+                alert.setContentText(String.format(EMPTY_HINT,"Street"));
+                alert.showAndWait();
+                return;
+            }
+
+            if(zip.length() == 0){
+                alert.setContentText(String.format(EMPTY_HINT,"Zip"));
+                alert.showAndWait();
+                return;
+            }
+            if(zip.length() != 5){
+                alert.setContentText(ZIP_LENGTH_HINT);
+                alert.showAndWait();
+                return;
+            }
+
+            try {
+                Integer.parseInt(zip);
+            }catch (NumberFormatException e){
+                alert.setContentText(ZIP_LENGTH_HINT);
+                alert.showAndWait();
+                return;
+            }
+
+            if(state.length() == 0){
+                alert.setContentText(String.format(EMPTY_HINT,"State"));
+                alert.showAndWait();
+                return;
+            }
+
+            if(credential.length() == 0){
+                alert.setContentText(String.format(EMPTY_HINT,"Credential"));
+                alert.showAndWait();
+                return;
+            }
+
+            if(description.length() == 0){
+                alert.setContentText(String.format(EMPTY_HINT,"Description"));
+                alert.showAndWait();
+                return;
+            }
+
+            if(nationality.length() == 0){
+                alert.setContentText(String.format(EMPTY_HINT,"Nationality"));
+                alert.showAndWait();
+                return;
+            }
+
+            if(city.length() == 0){
+                alert.setContentText(String.format(EMPTY_HINT,"City"));
+                alert.showAndWait();
+                return;
+            }
+
             author = new Author(0,firstName,lastName,address,credential,description,nationality);
         }
 
-        int countInt = 0;
-        try{
-            countInt = Integer.parseInt(countStr);
-        }catch (NumberFormatException e){
 
-        }
         AllowedBorrowDays days = AllowedBorrowDays.SEVEN_DAYS;
         if(dayStr.equals("7")) {
             days = AllowedBorrowDays.SEVEN_DAYS;
