@@ -11,6 +11,9 @@
 
 ### BASIC TEST Data (details in Constants.java)
 
-* Login Information:  (userId: 100000) (password: su)
+* Login Information:  
+	* userId:100000 password:su role:Admin or Libranian
+	* userId:100001 password:lin role:Libranian
+	* userId:100002 password:cui role:Admin
 * ISBN : 123456789
 * Member:  3
