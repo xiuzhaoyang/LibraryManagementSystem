@@ -103,6 +103,7 @@ public class BookEditDialogController extends BaseController {
         this.typeComboBox.setItems(this.typeData);
         this.typeComboBox.getSelectionModel().selectFirst();
 
+		this.ISBNField.setPromptText("123456789, 9 digit numbers.");
 
         AuthorDao authorDao = new AuthorDao();
         List<Author> authorList = authorDao.loadAllAuthor();
@@ -152,6 +153,7 @@ public class BookEditDialogController extends BaseController {
             this.streetField.setText("");
             this.streetField.setDisable(false);
             this.zipField.setText("");
+			this.zipField.setPromptText("12345, 5 digit numbers");
             this.zipField.setDisable(false);
             this.stateField.setText("");
             this.stateField.setDisable(false);
@@ -184,17 +186,30 @@ public class BookEditDialogController extends BaseController {
             return;
         }
 
-        if(ISBN.length() == 0){
-            alert.setContentText(String.format(EMPTY_HINT,"ISBN"));
+		if (ISBN.length() != 9) {
+			alert.setContentText("Please input 9 digit numbers");
+			alert.showAndWait();
+			return;
+		} else {
+			try {
+				Integer.parseInt(ISBN);
+			} catch (NumberFormatException e) {
+				alert.setContentText("Please input digit numbers in ISBN field.");
             alert.showAndWait();
             return;
         }
+		}
 
         int countInt = 0;
         try{
             countInt = Integer.parseInt(countStr);
+			if (countInt == 0) {
+				alert.setContentText(String.format(EMPTY_HINT, "Count"));
+				alert.showAndWait();
+				return;
+			}
         }catch (NumberFormatException e){
-            alert.setContentText(String.format(EMPTY_HINT,"Count"));
+			alert.setContentText("Please enter a digit number");
             alert.showAndWait();
             return;
         }

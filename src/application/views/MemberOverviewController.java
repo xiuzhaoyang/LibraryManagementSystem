@@ -70,22 +70,22 @@ public class MemberOverviewController implements IEditPerson {
 	@FXML
 	private Label rolesLabel;
 
-	private ObservableList<Person> personlist;
+	private ObservableList<Person> personlist = FXCollections.observableArrayList();
 
-	private List<Person> allPersons;
+
 
 	// Reference to the main application.
 	private Main main;
 
 	public MemberOverviewController(){}
 
-	private static PersonDao personDao;
+	private static PersonDao personDao = new PersonDao();
+
+	private static List<Person> allPersons = personDao.loadALlPersons();
 
 	@FXML
 	private void initialize(){
-		personDao = new PersonDao();
-		this.personlist = FXCollections.observableArrayList();
-		allPersons = personDao.loadALlPersons();
+		this.personlist.clear();
 		for(Person person : allPersons){
 			this.personlist.add(person);
 		}
@@ -162,6 +162,7 @@ public class MemberOverviewController implements IEditPerson {
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){
 			if(selectedIndex >= 0){
+				allPersons.remove(selectedIndex);
 				personTable.getItems().remove(selectedIndex);
 			}else{
 				//no effect
@@ -286,6 +287,7 @@ public class MemberOverviewController implements IEditPerson {
 			this.personTable.setItems(this.personlist);
 
 		}else {
+			allPersons.add(p);
 			this.personlist.add(p);
 		}
 
@@ -293,7 +295,6 @@ public class MemberOverviewController implements IEditPerson {
 	}
 
 	private void updatePerson(Person p){
-//		allPersons = personDao.loadALlPersons();
 		for(Person person : allPersons){
 			if(person.getPid() == p.getPid()){
 				person.setAddress(p.getAddress());

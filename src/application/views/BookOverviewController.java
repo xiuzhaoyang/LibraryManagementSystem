@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.util.Callback;
 
 import java.time.LocalDate;
@@ -35,7 +36,7 @@ public class BookOverviewController extends BaseController implements IEditPubli
     private TableView<Publication> tableView;
 
     @FXML
-    private ObservableList<Publication> publicationList;
+	private static ObservableList<Publication> publicationList = FXCollections.observableArrayList();
 
     @FXML
     private TableColumn<Publication, String> ISBNColumn;
@@ -75,11 +76,15 @@ public class BookOverviewController extends BaseController implements IEditPubli
 
     private Publication publication;
 
+	private static PublicationDao pd = new PublicationDao();
+
+	private static List<Publication> list = pd.loadAllPublication();
 
     @FXML
     private void initialize(){
 
-        this.ISBNColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Publication, String>, ObservableValue<String>>() {
+		this.ISBNColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Publication, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Publication, String> param) {
                 return new SimpleStringProperty(param.getValue().getISBN());
@@ -111,6 +116,7 @@ public class BookOverviewController extends BaseController implements IEditPubli
     }
 
     public void showDetail(Publication  publication){
+		if (publication != null) {
         this.idLabel.setText(String.valueOf(publication.getpId()));
         this.ISBNLabel.setText(publication.getISBN());
         this.titleLabel.setText(publication.getTitle());
@@ -126,9 +132,8 @@ public class BookOverviewController extends BaseController implements IEditPubli
         this.availableLabel.setText(String.valueOf(publication.getAvailableCount()));
         this.publication = publication;
         this.addCopyBtn.setDisable(false);
-
     }
-
+	}
 
     @FXML
     private void handleSearchByISBN(){
@@ -205,6 +210,7 @@ public class BookOverviewController extends BaseController implements IEditPubli
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             if(selectedIndex >= 0){
+				list.remove(selectedIndex);
                 this.publicationList.remove(selectedIndex);
                 this.tableView.setItems(this.publicationList);
             }else{
@@ -220,9 +226,20 @@ public class BookOverviewController extends BaseController implements IEditPubli
 
     @Override
     public void editPublication(Publication p, boolean isNew) {
+		Alert alert = new Alert(AlertType.ERROR);
         if(isNew){
             Publication publication = this.publicationList.get(this.publicationList.size() - 1);
             p.setpId(publication.getpId() + 1);
+
+			for (Publication pub : list) {
+				if (pub.getISBN().equals(p.getISBN())) {
+					alert.setContentText("This ISBN is already exists. Please either check your input or search book by ISBN and add copy.");
+					alert.showAndWait();
+					return;
+				}
+			}
+
+			list.add(p);
             this.publicationList.addAll(p);
             this.tableView.setItems(this.publicationList);
         }
