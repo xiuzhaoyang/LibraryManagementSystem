@@ -293,7 +293,7 @@ public class MemberOverviewController implements IEditPerson {
 	}
 
 	private void updatePerson(Person p){
-		allPersons = personDao.loadALlPersons();
+//		allPersons = personDao.loadALlPersons();
 		for(Person person : allPersons){
 			if(person.getPid() == p.getPid()){
 				person.setAddress(p.getAddress());
