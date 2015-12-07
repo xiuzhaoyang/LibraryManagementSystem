@@ -9,8 +9,8 @@
 			 Design and implements the File read/writes and Dao classes
 
 
-** BASIC TEST Data (details in Constants.java)
+### BASIC TEST Data (details in Constants.java)
 
-Login Information:  (userId: 100000) (password: su)
-ISBN : 123456789
-Memember:  3 
+* Login Information:  (userId: 100000) (password: su)
+* ISBN : 123456789
+* Member:  3
