@@ -43,7 +43,7 @@ public class Main extends Application {
      * Constructor
      */
 	public Main(){
-		
+
 		DaoTest.testWriteDB();
 	}
 
@@ -155,8 +155,8 @@ public class Main extends Application {
 			loader.setLocation(Main.class.getResource("views/MemberOverview.fxml"));
 			AnchorPane personOverview = (AnchorPane)loader.load();
 
-			
-			
+
+
 
 			Stage loginStage = new Stage();
 
@@ -168,8 +168,8 @@ public class Main extends Application {
 			// controller.setStage(loginStage);
 
 			// wait until user close it
-			
-			
+
+
 
 			MemberOverviewController controller = loader.getController();
 			controller.setMain(this);

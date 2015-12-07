@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.views.MemberEditDialogController">
+<AnchorPane prefHeight="375.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.views.MemberEditDialogController">
    <children>
       <GridPane layoutX="41.0" layoutY="112.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
         <columnConstraints>
@@ -18,7 +18,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -66,11 +65,6 @@
                   <Insets left="40.0" />
                </padding>
             </Label>
-            <Label text="Roles" GridPane.rowIndex="9">
-               <padding>
-                  <Insets left="40.0" />
-               </padding>
-            </Label>
             <TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="birthdayField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -79,7 +73,6 @@
             <TextField fx:id="stateField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="zipCodeField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField fx:id="personRolesField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Label text="ID">
                <padding>
                   <Insets left="40.0" />
@@ -88,7 +81,15 @@
             <Label fx:id="idLabel" text="Label" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Button layoutX="446.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleOK" prefHeight="31.0" prefWidth="66.0" text="OK" />
-      <Button layoutX="526.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <Button layoutX="446.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleOK" prefHeight="31.0" prefWidth="66.0" text="OK" />
+      <Button layoutX="526.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+      <Label layoutX="10.0" layoutY="288.0" text="Roles">
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </Label>
+      <CheckBox fx:id="adminChkbox" layoutX="146.0" layoutY="288.0" mnemonicParsing="false" text="Administrator" />
+      <CheckBox fx:id="libranianChkbox" layoutX="304.0" layoutY="288.0" mnemonicParsing="false" text="Libranian" />
+      <CheckBox fx:id="libMemberChkbox" layoutX="454.0" layoutY="288.0" mnemonicParsing="false" text="Library member" />
    </children>
 </AnchorPane>

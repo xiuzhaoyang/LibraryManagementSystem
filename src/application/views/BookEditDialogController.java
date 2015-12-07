@@ -121,16 +121,6 @@ public class BookEditDialogController extends BaseController {
             }
         });
         this.authorComboBox.getSelectionModel().selectLast();
-
-//        .valueProperty().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(ObservableValue ov, String t, String t1) {
-//                System.out.println(ov);
-//                System.out.println(t);
-//                System.out.println(t1);
-//            }
-//        });
-
     }
 
 

@@ -113,7 +113,7 @@ public class LoginController {
 		}else{
 			List<PersonRole> roleList =  person.getPersonRoles();
 			for(PersonRole tmpRole : roleList){
-				if(tmpRole.toString().equals(role.toString())){
+				if(tmpRole.getPersonRole().equals(role.getPersonRole())){
 					List<PersonRole> tmpRoleList = new ArrayList<PersonRole>();
 					tmpRoleList.add(tmpRole);
 					person.setPersonRoles(tmpRoleList);

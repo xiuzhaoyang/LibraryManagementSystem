@@ -1,10 +1,11 @@
 package application.views;
 
+import java.awt.Checkbox;
 import java.util.List;
 import java.util.Optional;
 
-import application.Dao.PersonDao;
 import application.Main;
+import application.Dao.PersonDao;
 import application.models.IEditPerson;
 import application.models.Person;
 import application.util.DateHelper;
@@ -71,17 +72,20 @@ public class MemberOverviewController implements IEditPerson {
 
 	private ObservableList<Person> personlist;
 
+	private List<Person> allPersons;
+
 	// Reference to the main application.
 	private Main main;
 
 	public MemberOverviewController(){}
 
+	private static PersonDao personDao;
+
 	@FXML
 	private void initialize(){
-
-		PersonDao personDao = new PersonDao();
+		personDao = new PersonDao();
 		this.personlist = FXCollections.observableArrayList();
-		List<Person> allPersons = personDao.loadALlPersons();
+		allPersons = personDao.loadALlPersons();
 		for(Person person : allPersons){
 			this.personlist.add(person);
 		}
@@ -91,18 +95,18 @@ public class MemberOverviewController implements IEditPerson {
 		}
 
 		firstNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
-			
+
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
 				return new SimpleStringProperty(param.getValue().getFirstName()) ;
 			}
 		});
-		
+
 		lastNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person,String>, ObservableValue<String>>() {
-			
+
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
-				
+
 				return new SimpleStringProperty(param.getValue().getLastName()) ;
 			}
 		});
@@ -112,7 +116,7 @@ public class MemberOverviewController implements IEditPerson {
 			@Override
 			public void changed(ObservableValue<? extends Person> observable, Person oldValue, Person newValue) {
 				showMemberDetails(newValue);
-				
+
 			}
 		});
 	}
@@ -131,6 +135,7 @@ public class MemberOverviewController implements IEditPerson {
 			stateLabel.setText(member.getAddress().getState());
 			zipCodeLabel.setText(member.getAddress().getZip());
 			phoneNumLabel.setText(member.getPhoneNum());
+
 			rolesLabel.setText(member.getPersonRolesToString());
 		}else{
 			firstNameLabel.setText("");
@@ -184,21 +189,12 @@ public class MemberOverviewController implements IEditPerson {
 			}
 		},null);
 
-//		boolean isOk = main.showPersonEditDialog(p);
-
-//		if(isOk){
-//			//TODO
-//			PersonDao pd = new PersonDao();
-//			pd.loadALlPersons().add(p);
-//
-//		}
 	}
 
 	@FXML
 	private void handleEditMember(){
 		Person selectedMember = personTable.getSelectionModel().getSelectedItem();
 		if(selectedMember != null){
-//			boolean isOk = main.showPersonEditDialog(selectedMember);
 			Utils.gotoNextScene(MemberEditDialogController.class, "MemberEditDialog.fxml", new Utils.ISceneControllerSetting() {
 				@Override
 				public BaseController prepareForController(FXMLLoader fxmlLoader) {
@@ -213,7 +209,6 @@ public class MemberOverviewController implements IEditPerson {
 
 		}else{
 			Alert warnAlert = new Alert(AlertType.WARNING);
-//			warnAlert.initOwner(main.getPrimaryStage());
 			warnAlert.setTitle("No Member Selected");
 			warnAlert.setHeaderText("No member Selected");
 			warnAlert.setContentText("Please select a member from the table.");
@@ -282,10 +277,35 @@ public class MemberOverviewController implements IEditPerson {
 	public void editPerson(Person p, boolean isNew) {
 		if(isNew)
 		{
-			this.personlist.add(p);
+			updatePerson(p);
+			personlist.clear();
+			for(Person person : allPersons){
+				this.personlist.add(person);
+			}
+
 			this.personTable.setItems(this.personlist);
+
 		}else {
-			showMemberDetails(p);
+			this.personlist.add(p);
+		}
+
+		showMemberDetails(p);
+	}
+
+	private void updatePerson(Person p){
+		allPersons = personDao.loadALlPersons();
+		for(Person person : allPersons){
+			if(person.getPid() == p.getPid()){
+				person.setAddress(p.getAddress());
+				person.setDob(p.getDob());
+				person.setFirstName(p.getFirstName());
+				person.setLastName(p.getLastName());
+				person.setPersonRoles(p.getPersonRoles());
+				person.setPhoneNum(p.getPhoneNum());
+				person.setPwd(p.getPwd());
+				person.setUserName(p.getUserName());
+				break;
+			}
 		}
 	}
 }

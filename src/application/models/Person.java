@@ -10,21 +10,21 @@ public class Person  implements Serializable{
 	public static final String PERSON_TYPE_ADMIN = "ADMINISTRATOR";
 	public static final String PERSON_TYPE_LIBRARIAN = "LIBRARIAN";
 	public static final String PERSON_TYPE_MEMBER = "LIB_MEMBER";
-	
+
 	private String userName;
 	private String pwd;
-	
+
 	private  int pid;
 	private  String firstName;
 	private  String lastName;
-	
+
 	private  Address address;
 	private  String phoneNum;
 	private  LocalDate dob;
 	private List<PersonRole> personRoles;
 	private static int lastPid;
 
-	
+
 	public String getUserName() {
 		return userName;
 	}
@@ -41,7 +41,7 @@ public class Person  implements Serializable{
 		this.pwd = pwd;
 	}
 
-	
+
 	/**
      * Default constructor.
      */
@@ -69,7 +69,7 @@ public class Person  implements Serializable{
 		lastPid++;
 	}
 
-	
+
     public int getPid() {
 		return pid;
 	}
@@ -132,7 +132,7 @@ public class Person  implements Serializable{
     	List<PersonRole> roles = this.personRoles;
     	if(roles != null){
     		for(PersonRole role : this.personRoles){
-        		sb.append(role.toString());
+        		sb.append(role.getPersonRole());
         		sb.append(",");
         	}
 
@@ -142,9 +142,6 @@ public class Person  implements Serializable{
     	return sb.toString();
     }
 
-    public void setPersonRole(List<PersonRole> personRoles){
-    	this.personRoles = personRoles;
-    }
 
     public void setPersonRoleString(String personRoles){
     	String[] roles = personRoles.split(",");
@@ -161,12 +158,12 @@ public class Person  implements Serializable{
     		}
     	}
 
-    	this.personRoles = (personRolesList);
+    	this.personRoles = personRolesList;
     }
 
     @Override
     public String toString() {
-    
+
     	return "id " +pid + " firName " + firstName + " lastName " + lastName;
     }
     private static final long serialVersionUID = 102L;
