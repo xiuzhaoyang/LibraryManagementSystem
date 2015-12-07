@@ -140,7 +140,7 @@ public class BookOverviewController extends BaseController implements IEditPubli
         ObservableList<Publication> tmpList = FXCollections.observableArrayList();
         for(Publication publication : this.publicationList){
             String ISBN = publication.getISBN();
-            if(ISBN.equals(keyword)){
+            if(ISBN.contains(keyword)){
                 tmpList.add(publication);
             }
         }
@@ -165,7 +165,7 @@ public class BookOverviewController extends BaseController implements IEditPubli
         ObservableList<Publication> tmpList = FXCollections.observableArrayList();
         for(Publication publication : this.publicationList){
             String title = publication.getTitle();
-            if(title.toLowerCase().equals(keyword.toLowerCase())){
+            if(title.toLowerCase().contains(keyword.toLowerCase())){
                 tmpList.add(publication);
             }
         }
@@ -192,11 +192,6 @@ public class BookOverviewController extends BaseController implements IEditPubli
         },null);
     }
 
-    @FXML
-    private void handleEditPublication(){
-
-
-    }
 
     @FXML
     private void handleDeletePublication(){
